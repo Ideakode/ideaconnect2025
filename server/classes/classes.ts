@@ -5,3 +5,5 @@ export { storeClass as store } from "./store.class.js";
 export { storeAgentClass as storeA } from "./storeAgent.class.js";
 export { storeStrangerClass as storeS } from "./storeStranger.class.js";
 export { webServerClass as webServer } from "./webServer.class.js";
+
+/* test */

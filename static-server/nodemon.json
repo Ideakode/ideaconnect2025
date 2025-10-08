@@ -1,0 +1,5 @@
+{
+    "watch": ["."],
+    "ext": "*",
+    "exec": "npm run pre-build-security"
+}

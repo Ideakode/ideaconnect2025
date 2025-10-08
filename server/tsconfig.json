@@ -1,0 +1,10 @@
+{
+  "extends": "../tsconfig.base.json",
+  "compilerOptions": {
+    "rootDir": ".",
+    "outDir": "../dist/server",
+    "composite": true  // required if another project has a reference to this one.
+  },  
+  "include": ["**/*"],
+  "exclude": ["node_modules"]
+}

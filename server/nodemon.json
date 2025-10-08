@@ -1,0 +1,5 @@
+{
+    "watch": ["."],
+    "ext": "ts,json",
+    "exec": "tsc --noEmit && node --env-file=\"./config.env\" --import=tsx  ./index.ts"
+}

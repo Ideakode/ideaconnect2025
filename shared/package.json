@@ -1,0 +1,16 @@
+{
+  "name": "shared",
+  "version": "1.0.0",
+  "main": "index.js",
+  "devDependencies": {
+    "tsx": "^4.19.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "",
+    "dev": "nodemon"
+  },
+  "author": "Linton Fernandes",
+  "license": "ISC",
+  "description": ""
+}

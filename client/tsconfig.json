@@ -1,0 +1,11 @@
+{
+  "extends": "../tsconfig.base.json",
+  "compilerOptions": {
+    "rootDir": ".",
+    "outDir": "../dist/public/",
+    "composite": true, // required if another project has a reference to this one.
+    "lib": ["DOM", "ES6", "ES5"]
+  },
+  "include": ["**/*"],
+  "exclude": ["node_modules"]
+}

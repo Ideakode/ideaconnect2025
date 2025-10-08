@@ -1,0 +1,5 @@
+{
+    "watch": ["."],
+    "ext": "ts,json",
+    "exec": "tsc -b && node --import=tsx  ./js/agent/index.ts"
+}

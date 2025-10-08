@@ -1,0 +1,5 @@
+{
+    "watch": ["."],
+    "ext": "*",
+    "exec": "npm run pre-build-shared -w client -w server"
+}

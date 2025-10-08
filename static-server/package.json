@@ -1,0 +1,14 @@
+{
+  "name": "static-server",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",    
+    "pre-build-security": "copyfiles  -V -E  \"./security/**/*.*\" ../dist/static-server",
+    "build": "npm run pre-build-security",
+    "dev": "nodemon"
+  },
+  "author": "Linton Fernandes",
+  "license": "ISC",
+  "description": ""
+}

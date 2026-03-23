@@ -5,18 +5,18 @@ import { dashboard, allowConnections, totalStrangers } from "../ui.js";
 import { rootAgentElements } from "./rootAgent.elements.js";
 import { rootAgentReferences } from "./rooAgent.references.js";
 
-export class rootAgent {
+export class rootAgent {  
   public static initializeRootElements() {
     logger.log(this.name, " initializeRootElements");
     try {
-      const peerType = constants.peerTypes.AGENT;
+      //const peerType = constants.peerTypes.AGENT;
       const mainC = rootAgentElements.createRootContainer();
-      const dashC = dashboard.createDashboard(peerType);
+      /* const dashC = dashboard.createDashboard(peerType);
       const allowConn = allowConnections.createAllowConnections();
       const totalStrangersC = totalStrangers.createStrangerStatus();
       dashC.appendChild(allowConn);
       dashC.appendChild(totalStrangersC);
-      mainC.appendChild(dashC);
+      mainC.appendChild(dashC);*/
       document.body.appendChild(mainC);
     } catch (error: unknown) {
       const method = this.initializeRootElements.name;

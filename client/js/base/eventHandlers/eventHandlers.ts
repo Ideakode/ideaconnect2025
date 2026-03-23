@@ -1,2 +1,2 @@
-export * from "./socket.eventHandler.js";
-export * from "./webRTC.eventHandler.js";
+export {socketEventHandler} from "./socket.eventHandler.js";
+export {webRTCEventHandler} from "./webRTC.eventHandler.js";

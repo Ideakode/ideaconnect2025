@@ -13,9 +13,11 @@ export default class webRTCStrangerService extends webRtcSvc {
       const parser = parserSHelper;
       const validator = validatorSHelper;
       const webRtcEvMap = webRtcEventMapping;
+      
       validator.checkCommonParamsInterface(cParams);
       const store = parser.parseStoreStranger(cParams.store);
       validator.checkRTCPeerConnection(store.peerConnection);
+
       const cDetailsToAttach = parser.parseCallDetailsInterface(data);
       this.startServices(cParams, cDetailsToAttach, webRtcEvMap);
     } catch (error: unknown) {

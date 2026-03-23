@@ -16,7 +16,7 @@ export class rootElements {
   }
 
   public static createRootContainer(): HTMLDivElement {
-    /* <div class="main_container" id="main_container"> */
+    /* <div class="root_container" id="root_container"> */
     const rootC = document.createElement("div") as HTMLDivElement;
     rootC.classList.add(rootReferences.classes.root_container);
     rootC.id = rootReferences.IDs.root_container;

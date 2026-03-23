@@ -9,6 +9,11 @@ import { ICommonParams, ICallDetails } from "../../interfaces/interfaces.js";
 import { sendChatMessage } from "../webRtc/webRtc.js";
 import { callEnded } from "../call/call.js";
 
+/**
+ * The ongoing call setup was accepted by the remote peer
+ * It parses and validates the arguments, checks if call is still valid.
+ * If call valid, it initializes the webrtc resources needed depending of the calltype.
+ */
 export class callAccepted {
   public static execute(
     cParamsData: ICommonParams.commonParams,
@@ -23,10 +28,12 @@ export class callAccepted {
       const cParams = parser.parseCommonParamsInterface(cParamsData);
       const store = parser.parseStoreStranger(cParams.store);
       const cDetailsToAttach = parser.parseCallDetailsInterface(data);
+
       validator.checkCall(store, cDetailsToAttach);
 
+      /* creates the default peerconnection */
       const peerConn = webRtcSSvc.createPeerConnection();
-      storeSSvc.setPeerConnection(store, peerConn);
+      storeSSvc.setPeerConnection(store, peerConn); //stores peerConnection obj for this call
       webRtcSSvc.init(cParams, cDetailsToAttach);
       storeSSvc.setCallInRtcProgress(store, cDetailsToAttach);
       webRtcSSvc.startWebRtcOffer(store);

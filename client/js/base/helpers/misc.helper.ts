@@ -1,3 +1,22 @@
+/**
+ * @file misc.helper.ts
+ * @class miscHelper
+ *
+ * @description
+ * Provides miscellaneous utility functions that don't belong to a specific domain helper.
+ *
+ * @staticMethods
+ * - getTypeOfConnectedPeerBasedonURL(): string
+ *     Reads window.location.href, lowercases the pathname, and returns the peer type
+ *     ("agent" or "stranger") by matching against the configured Socket.IO namespaces.
+ *     Throws a validatorError (via errorBuilder.peerNotKnown) if the pathname doesn't
+ *     match either namespace. Used during initialization to determine which store/services
+ *     to bootstrap without relying on hard-coded URL strings in the entry points.
+ *
+ * @see constants.socketIO.namespaces  - "/agent" and "/stranger" namespace strings
+ * @see constants.peerTypes            - "agent" and "stranger" peer type strings
+ * @see errorBuilder.peerNotKnown      - error thrown on unrecognized pathname
+ */
 import { socketIO, peerTypes } from "../constants/constants.js";
 import { errorBuilder, errorTypes, errorHandler } from "../errors/errors.js";
 

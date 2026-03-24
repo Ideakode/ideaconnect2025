@@ -1,3 +1,37 @@
+/**
+ * @file validator.helper.ts
+ * @class validatorHelper
+ *
+ * @description
+ * Provides type-guard checks and business-rule validations for all runtime objects used
+ * across the application. Each public `check*` method throws a validatorErrorClass (via
+ * errorHandler.throwError) if the check fails — it does not return a value.
+ * Private `is*` methods perform the actual structural type guard and are used internally.
+ *
+ * @staticMethods — public checks (throw on failure)
+ * - checkSocket(data)                               - Socket instance check
+ * - checkRtcDataChannel(data)                       - RTCDataChannel instance check
+ * - checkStore(data)                                - store shape check (all required properties)
+ * - checkRTCPeerConnection(data)                    - RTCPeerConnection shape check
+ * - checkRTCIceCandidate(data)                      - RTCIceCandidate shape check
+ * - checkHTMLElement(el, elName?)                   - non-null HTMLElement instanceof check
+ * - checkPeerType(peerType)                         - must be AGENT or STRANGER
+ * - checkNamespace(nspc)                            - must be /agent or /stranger
+ * - checkPeerUrlNamespace(nspc, peer)               - namespace and peerType must match
+ * - checkCommonParamsInterface(data)                - ICommonParams.isCommonParams check
+ * - checkCallDetailsInterface(data)                 - ICallDetails.isCallDetails check
+ * - canPeerParticipateInCall(store)                 - composite check: store valid, socket valid,
+ *                                                     callState is IDLE, currentCallDetails is null
+ * - checkCallInSignalingState(store)                - throws if callState is CONNECTED
+ * - checkCall(store, cDetails)                      - stored callId must match incoming callId
+ *
+ * @staticMethods — private type guards (return boolean, used internally)
+ * - isSocket / isStore / isRTCPeerConnection / isDataChannel / isRtcIceCandidate
+ *
+ * @see errorBuilder    - constructs the specific error for each check failure
+ * @see errorHandler    - throws the constructed error
+ * @see parserHelper    - calls these checks before casting unknown values
+ */
 import { Socket } from "socket.io-client";
 import { errorBuilder, errorTypes, errorHandler } from "../errors/errors.js";
 import { ICommonParams, ICallDetails } from "../interfaces/interfaces.js";

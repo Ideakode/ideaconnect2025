@@ -1,3 +1,22 @@
+/**
+ * @file messenger.eventHandler.ts
+ * @class messengerEventHandler
+ *
+ * @description
+ * Registers DOM click event listeners on the messenger's send button.
+ *
+ * @staticMethods
+ * - registerSendMessageButton(cParams, cDetails, btn, fnSendMsg)
+ *     Attaches a click listener to the supplied button element.
+ *     On click, shows a temporary alert (debugging remnant) then calls
+ *     fnSendMsg(cParams, cDetails).
+ *
+ * @note The commented-out block shows the original intended implementation using
+ *       both a keydown (Enter key) and a click listener directly on the DOM elements.
+ *       The current implementation defers message reading to the use case via getChatMessageText.
+ *
+ * @see messenger  - calls this after creating the messenger component
+ */
 import { errorHandler } from "../../errors/errors.js";
 import { ICommonParams, ICallDetails } from "../../interfaces/interfaces.js";
 import { fnVoidAnyArguments } from "../../types/types.js";

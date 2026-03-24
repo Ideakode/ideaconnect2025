@@ -1,3 +1,40 @@
+/**
+ * @file callDialog.ts
+ * @class callDialog
+ *
+ * @description
+ * Public API for the call dialog UI component. Shown when an incoming or outgoing call
+ * is in the ALERTING state. Delegates DOM work to callDialogElements and event binding
+ * to callDialogEventHandler.
+ *
+ * The dialog is created dynamically and appended to a specified container element,
+ * then removed (via closeCallDialogIfOpen) when the call is accepted, rejected, or
+ * cancelled. Calling open* always closes any existing dialog first.
+ *
+ * @html
+ * <div class="dialog_container" id="call_dialog">
+ *   <div class="dialog_wrapper">
+ *     <div class="dialog_content">
+ *       <p class="dialog_title">...</p>
+ *       <div class="dialog_image_container"><img dialogAvatar.png></div>
+ *       <div class="dialog_button_container">
+ *         [accept + reject buttons (incoming) | hangup button (outgoing)]
+ *       </div>
+ *     </div>
+ *   </div>
+ * </div>
+ *
+ * @staticMethods
+ * - openIncomingCallDialog(cParams, cDetails, name, attachToId, fnAccept, fnReject)
+ *     Creates the dialog with Accept + Reject buttons and registers their click handlers.
+ * - openOutgoingCallDialog(cParams, cDetails, name, attachToId, fnHangUp)
+ *     Creates the dialog with a HangUp button and registers its click handler.
+ * - closeCallDialogIfOpen()
+ *     Removes the dialog from the DOM if it exists. Safe to call when dialog is absent.
+ *
+ * @see callDialogElements     - (./callDialog.elements.ts) DOM creation and queries
+ * @see callDialogEventHandler - (./callDialog.eventHandler.ts) button event registration
+ */
 import { errorHandler } from "../../errors/errors.js";
 import { validatorHelper } from "../../helpers/helpers.js";
 import { ICommonParams, ICallDetails } from "../../interfaces/interfaces.js";

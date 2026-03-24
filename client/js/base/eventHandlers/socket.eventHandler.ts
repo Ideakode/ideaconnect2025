@@ -1,3 +1,32 @@
+/**
+ * @file socket.eventHandler.ts
+ * @class socketEventHandler
+ *
+ * @description
+ * Registers Socket.IO event listeners on the peer's socket, mapping each event name to the
+ * corresponding use case callback supplied in the eventsMap. Called once during peer
+ * initialization (via socketService.initService) after the socket has been created and stored.
+ *
+ * @staticMethods
+ * - registerEvents(cParams, evsMap)
+ *     Entry point. Retrieves the socket from the store, then calls bindEvents.
+ * - bindEvents(cParams, socket, evsMap)       [private]
+ *     Iterates the eventsMap and registers each (eventName → callback) pair on the socket.
+ * - buildCallback(cParams, evMap)             [private]
+ *     Returns an appropriately-typed closure for the specific socket event:
+ *     - CONNECT       — calls callback(cParams)
+ *     - DISCONNECT    — calls callback(cParams, { reason, details })
+ *     - CONNECT_ERROR — logs the error then calls callback(cParams, error)
+ *     - default       — logs the data then calls callback(cParams, data)
+ * - getNotDefinedCallback()                   [private]
+ *     Returns a no-op closure used when no callback is defined for an event.
+ *
+ * @param cParams  - commonParams carrying the peer's store
+ * @param evsMap   - eventsMap where each entry pairs an eventName with an eventCallback
+ *
+ * @see socketService.initService - creates the socket then calls this handler
+ * @see IEventsMap / IEventMap    - (client/js/base/.../interfaces.ts) event map shape
+ */
 import { Socket } from "socket.io-client";
 import { errorHandler } from "../errors/errors.js";
 import {

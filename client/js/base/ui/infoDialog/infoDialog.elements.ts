@@ -1,3 +1,30 @@
+/**
+ * @file infoDialog.elements.ts
+ * @class infoDialogElements
+ *
+ * @description
+ * Handles all DOM creation and querying for the info dialog component.
+ * Called exclusively by infoDialog and infoDialogEventHandler.
+ *
+ * @staticMethods — creation
+ * - createInfoDialog(infoType): HTMLDivElement
+ *     Builds the full dialog tree: container → wrapper → content (title + avatar + description).
+ * - createInfoDialogContent(infoType): HTMLDivElement   [public — used externally if needed]
+ *
+ * @staticMethods — closing
+ * - closeInfoDialogIfOpen(): void   - null-safe remove via getInfoDialogContainerIfExists
+ * - closeInfoDialog(): void         - throws if #info_dialog_container is absent
+ *
+ * Private builders:
+ * - createInfoDialogContainer()   → <div class="info_dialog_container" id="info_dialog_container">
+ * - createInfoDialogWrapper()     → <div class="dialog_wrapper">
+ * - createInfoDialogTitle()       → <p class="dialog_title">
+ * - createInfoDialogDescription() → <p class="dialog_description">
+ * - createInfoDialogAvatar()      → <div class="dialog_image_container"><img>
+ *
+ * @see infoDialogReferences - (./infoDialog.references.ts) id/class name constants
+ * @see infoDialogTexts      - (./infoDialog.text.ts) text content by infoType
+ */
 import { errorHandler } from "../../errors/errors.js";
 import { validatorHelper } from "../../helpers/helpers.js";
 import inforDialogText from "./infoDialog.text.js";

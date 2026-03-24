@@ -1,3 +1,34 @@
+/**
+ * @file store.service.ts
+ * @class storeService
+ *
+ * @description
+ * Provides controlled read/write access to the peer's storeClass. Every mutation of the
+ * store goes through this service so that validation is always applied before writing,
+ * and the store's internal invariants are maintained.
+ *
+ * @staticMethods
+ * - setSocket(socket, store)                          - writes socket to store
+ * - getSocket(store): Socket | null                   - reads socket from store
+ * - getCurrentCallDetails(store): callDetails | null  - reads currentCallDetails
+ * - setPeerConnection(store, peerConn)                - writes RTCPeerConnection to store
+ * - getPeerConnection(store): RTCPeerConnection | null
+ *
+ * Call state transitions (each validates store & call consistency first):
+ * - setCallInProgress(store, cDetails)
+ *     Sets callState = IN_PROGRESS, stores cDetails. Called when INVITE is sent/received.
+ * - setCallInRtcProgress(store, cDetails)
+ *     Sets callState = WEBRTC_PROGRESS. Called after CALL_ACCEPTED, before WebRTC completes.
+ * - setCallConnected(store, cDetails)
+ *     Sets callState = CONNECTED. Called when the WebRTC data channel opens.
+ * - resetCall(store)
+ *     Resets callState to IDLE, clears currentCallDetails, closes & nulls peerConnection,
+ *     dataChannel and streams. Called on BYE, hangup, or any terminal call event.
+ *
+ * @see storeClass        - the data model this service wraps
+ * @see validatorHelper   - checkStore / checkCall guards called before each mutation
+ * @see constants.callState - IDLE / IN_PROGRESS / WEBRTC_PROGRESS / CONNECTED
+ */
 import { Socket } from "socket.io-client";
 import { errorHandler } from "../errors/errors.js";
 import { validatorHelper } from "../helpers/helpers.js";

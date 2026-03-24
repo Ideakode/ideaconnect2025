@@ -1,3 +1,40 @@
+/**
+ * @file messageBuilder.ts
+ * @class messageBuilder
+ *
+ * @description
+ * Factory class that constructs all outbound socket messages as typed interface objects.
+ * Every message sent over the socket originates here, ensuring a consistent shape before
+ * it reaches socketService for emission.
+ *
+ * @staticMethods — grouped by message category
+ *
+ * General socket messages:
+ * - buildClientRequest(requestType, data)         → IClientRequest.clientRequest
+ * - buildClientNotification(notifType, data)      → INotification.notification
+ *
+ * Call signaling messages (all produce ICallSignaling.callSignaling):
+ * - buildCallSignaling(cDetails, msgType, routeTo)
+ * - buildCallSignalingInvite(type, clgId, cldId, routeTo, clgName?, cldName?)
+ *     Generates a new callId via callHelper.generateCallId(), then builds INVITE.
+ * - buildCallSignalingCancel(cDetails)            → CANCEL routed to calledPartyId
+ * - buildCallSignalingAccept(cDetails, routeTo)   → CALL_ACCEPTED
+ * - buildCallSignalingReject(cDetails, routeTo)   → CALL_REJECTED
+ * - buildCallSignalingBusy(cDetails, routeTo)     → CALL_BUSY
+ * - buildCallSignalingBye(cDetails, routeTo)      → BYE
+ *
+ * WebRTC signaling messages (all produce IWebRtcSignaling.webRtcSignaling):
+ * - buildWebRTCSignalingIceCandidate(cDetails, data, toId)  → ICE_CANDIDATE
+ * - buildWebRTCSignalingOffer(cDetails, data)               → OFFER (routed to calledPartyId)
+ * - buildWebRTCSignalingAnswer(cDetails, data)              → ANSWER (routed to callingPartyId)
+ * - buildWebRtcSignaling(cDetails, mType, routeTo, data, callStatus?)
+ *
+ * Call details:
+ * - buildCallDetails(type, clgId, cldId, clgName?, cldName?) → ICallDetails.callDetails
+ *
+ * @see socketService   - sends the messages produced here
+ * @see callHelper      - generates the callId used in buildCallDetails
+ */
 import { callSignaling, webRTC } from "../constants/constants.js";
 import {
   IClientRequest,

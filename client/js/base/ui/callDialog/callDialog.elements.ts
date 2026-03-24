@@ -1,3 +1,30 @@
+/**
+ * @file callDialog.elements.ts
+ * @class callDialogElements
+ *
+ * @description
+ * Handles all DOM creation and querying for the call dialog component.
+ * Builds the full dialog structure from sub-elements and provides accessors for
+ * each interactive button. Called exclusively by callDialog and callDialogEventHandler.
+ *
+ * @staticMethods — creation
+ * - createCallDialog(cType, name, isIncoming): HTMLDivElement
+ *     Builds the complete dialog tree (container → wrapper → content).
+ * - getCallDialogContainer(): HTMLDivElement        (throws if absent)
+ * - getCallDialogContainerIfExists(): HTMLDivElement | null  (null-safe)
+ * - getAcceptCallButton(): HTMLButtonElement         (id: call_dialog_accept_call_button)
+ * - getRejectCallButton(): HTMLButtonElement         (id: call_dialog_reject_call_button)
+ * - getHangupCallButton(): HTMLButtonElement         (id: call_dialog_hang_up_call_button)
+ * - closeCallDialog(): void                          (removes container; throws if absent)
+ * - closeCallDialogIfOpen(): void                    (null-safe remove)
+ *
+ * Button rendering by direction:
+ * - Incoming call: Accept button + Reject button
+ * - Outgoing call: HangUp button only
+ *
+ * @see callDialogReferences  - (./callDialog.references.ts) id/class name constants
+ * @see callDialogTexts       - (./callDialog.texts.ts) dialog title text helper
+ */
 import { errorHandler } from "../../errors/errors.js";
 import { validatorHelper } from "../../helpers/helpers.js";
 import references from "./callDialog.references.js";

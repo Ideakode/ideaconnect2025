@@ -1,3 +1,20 @@
+/**
+ * @file callButtons.elements.ts
+ * @class callButtonsElements
+ *
+ * @description
+ * Handles DOM creation and querying for the call buttons component.
+ * Called exclusively by the callButtons facade class.
+ *
+ * @staticMethods
+ * - createFinishCallButton(): HTMLDivElement
+ *     Builds the container div + button + hangUp image and returns the root container.
+ * - getFinishCallButton(btnC): HTMLButtonElement
+ *     Queries #finish_call_button within the supplied container element.
+ *     Throws uiErrorClass if the button is not found.
+ *
+ * @see callButtonsReferences - (./callButtons.references.ts) id/class name constants
+ */
 import { errorHandler } from "../../errors/errors.js";
 import { validatorHelper } from "../../helpers/helpers.js";
 

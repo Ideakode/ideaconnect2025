@@ -1,3 +1,41 @@
+/**
+ * @file webRtcService.ts
+ * @class webRtcService
+ *
+ * @description
+ * Manages the WebRTC session lifecycle for a peer-to-peer call. Creates peer connections,
+ * drives the SDP offer/answer exchange, registers WebRTC event handlers, and sends data
+ * channel messages. Extended by agent and stranger-specific subclasses which call
+ * startServices() from their accepted-call use cases.
+ *
+ * @staticProperties
+ * - configuration  - RTCConfiguration with Google STUN + ExpressTURN TURN server credentials.
+ *
+ * @staticMethods
+ * - createPeerConnection(): RTCPeerConnection
+ *     Instantiates a new RTCPeerConnection using the shared ICE configuration.
+ *     Called by the accepting peer's use case before the SDP exchange begins.
+ *
+ * - startServices(cParams, cDetailsToAttach, webRtcEM)   [protected]
+ *     Registers WebRTC event handlers on the existing peerConnection via webRTCEventHandler,
+ *     and creates a data channel for CHAT call types.
+ *
+ * - startWebRtcOffer(incomingStore): Promise<void>
+ *     Creates and sets a local SDP offer, then sends it via socketService.sendWebRTCSignaling.
+ *     Called by the calling party after the call is accepted.
+ *
+ * - startWebRtcAnswer(incomingStore, offer): Promise<void>
+ *     Sets the remote offer as the remote description, creates and sets an SDP answer,
+ *     then sends it via socketService.sendWebRTCSignaling.
+ *     Called by the answering party on receipt of OFFER.
+ *
+ * - sendDataChannelMessage(cParams, message): void
+ *     Stringifies and sends a message over the active RTCDataChannel.
+ *
+ * @see webRTCEventHandler  - registers ICE, data channel, and connection state handlers
+ * @see storeService        - provides socket and call details from the store
+ * @see messageBuilder      - builds the WebRTC signaling messages
+ */
 import { errorHandler } from "../errors/errors.js";
 import {
   validatorHelper,

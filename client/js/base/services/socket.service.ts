@@ -1,3 +1,34 @@
+/**
+ * @file socket.service.ts
+ * @class socketService
+ *
+ * @description
+ * Manages the Socket.IO connection lifecycle and all outbound socket emissions.
+ * The service is static-only; state is held in the peer's store, not here.
+ *
+ * @staticMethods
+ * - createSocket(nspc, peerType): Socket | null
+ *     Validates that namespace and peerType are consistent, then calls window.io(nspc)
+ *     to create the Socket.IO client socket. Used during initialization.
+ *
+ * - initService(cParams, socketEM, namespace, peerType): void
+ *     High-level bootstrap: creates the socket, saves it to the store via storeService,
+ *     then calls socketEventHandler.registerEvents to bind all listeners.
+ *
+ * Outbound emit methods (each validates socket & payload before emitting):
+ * - sendClientRequest(socket, data)       → emits CLIENT_REQUEST event
+ * - sendClientNotification(socket, data)  → emits CLIENT_NOTIFICATION event
+ * - sendCallSignaling(socket, data)       → emits CALL_SIGNALING event
+ * - sendWebRTCSignaling(socket, data)     → emits WEBRTC_SIGNALING event
+ *
+ * @globalAugmentation
+ * Declares Window.io as the Socket.IO client factory injected by the static HTML page
+ * (via <script src="/socket.io/socket.io.js">).
+ *
+ * @see socketEventHandler  - registers all inbound socket listeners after initService
+ * @see storeService        - saves the created socket to the peer store
+ * @see messageBuilder      - builds the typed messages passed to the emit methods
+ */
 import { Socket } from "socket.io-client";
 import { errorHandler } from "../errors/errors.js";
 import { validatorHelper, parserHelper } from "../helpers/helpers.js";

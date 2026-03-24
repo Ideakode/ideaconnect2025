@@ -1,3 +1,36 @@
+/**
+ * @file webRTC.eventHandler.ts
+ * @class webRTCEventHandler
+ *
+ * @description
+ * Registers all WebRTC event listeners on the peer's RTCPeerConnection after a call is accepted
+ * and a peer connection has been created. Called by webRtcService.startServices().
+ * The call details to be forwarded with each event callback are provided at registration time
+ * so that they are captured in the closure (rather than read from the store later).
+ *
+ * @staticMethods
+ * - registerEvents(cParams, data, evsMap)
+ *     Entry point. Parses callDetails then delegates to the three sub-registration methods.
+ * - registerICECandidates(cParams, attachedCDetails, evMap)    [private]
+ *     Sets pc.onicecandidate → fires ICE_CANDIDATE callback with (cParams, cDetails, candidate).
+ * - registerDatachannelEvents(cParams, attachedCDetails, evMap) [private]
+ *     Sets pc.ondatachannel → registers:
+ *       - dataChannel.onopen    → DATACHANNEL_OPEN callback (cParams, cDetails, dataChannel)
+ *       - dataChannel.onmessage → DATACHANNEL_MESSAGE callback (cParams, cDetails, parsedMsg)
+ *       - dataChannel.onclose   → logs only (callback commented out)
+ * - registerPeerConnectionEvents(cParams, attachedCDetails, evMap) [private]
+ *     Sets pc.onconnectionstatechange → logs when state === "connected".
+ * - getCallBack(eventName, eventsmap)    [private]
+ *     Looks up a callback by event name from the eventsMap; returns no-op if not found.
+ *
+ * @param cParams           - commonParams carrying the peer's store (with active peerConnection)
+ * @param data              - callDetails to attach to all event callbacks via closure
+ * @param evsMap            - eventsMap supplying callbacks for ICE_CANDIDATE, DATACHANNEL_OPEN,
+ *                            DATACHANNEL_MESSAGE
+ *
+ * @see webRtcService.startServices  - calls this after creating the RTCPeerConnection
+ * @see constants.webRTC.events      - event name constants
+ */
 import { errorHandler } from "../errors/errors.js";
 import {
   ICommonParams,

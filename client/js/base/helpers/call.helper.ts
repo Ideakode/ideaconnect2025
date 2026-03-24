@@ -1,3 +1,18 @@
+/**
+ * @file call.helper.ts
+ * @class callHelper
+ *
+ * @description
+ * Provides utility functions for call management.
+ *
+ * @staticMethods
+ * - generateCallId(): string
+ *     Generates a 32-character random alphanumeric + symbol string used as a unique
+ *     call identifier. Called by messageBuilder.buildCallDetails() each time a new
+ *     outgoing call is initiated.
+ *
+ * @see messageBuilder.buildCallDetails  - primary caller
+ */
 export class callHelper {
   public static generateCallId() {
     let result = "";

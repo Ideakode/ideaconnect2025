@@ -1,3 +1,29 @@
+/**
+ * @file callButtons.ts
+ * @class callButtons
+ *
+ * @description
+ * Public API for the in-call action buttons component. Currently provides the
+ * "Finish Call" (hang-up) button shown during an active call session.
+ *
+ * @html
+ * <div class="finish_call_button_container" id="finish_call_button_container">
+ *   <button class="call_button_small" id="finish_call_button">
+ *     <img src="./utils/images/hangUp.png">
+ *   </button>
+ * </div>
+ *
+ * @staticMethods
+ * - createFinishCallButton(cParams, cDetails, fnEndCall): HTMLDivElement
+ *     Creates the button container, optionally registers a click handler via
+ *     callButtonsEventHandler.registerFinishCallButtonEvent, and returns the element
+ *     for the caller to append into the active call view.
+ *
+ * @note createButton() is a stub — not yet implemented.
+ *
+ * @see callButtonsElements     - (./callButtons.elements.ts) DOM creation
+ * @see callButtonsEventHandler - (./callButtons.eventHandler.ts) click registration
+ */
 import { errorHandler } from "../../errors/errors.js";
 import callButtonsElements from "./callButtons.elements.js";
 import btnEH from "./callButtons.eventHandler.js";

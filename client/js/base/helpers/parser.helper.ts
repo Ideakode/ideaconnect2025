@@ -1,3 +1,42 @@
+/**
+ * @file parser.helper.ts
+ * @class parserHelper
+ *
+ * @description
+ * Provides safe parsing/casting functions that convert `unknown` values into their expected
+ * typed counterparts. Each method first delegates to validatorHelper for the type guard check,
+ * then casts the value. On failure it propagates a parserErrorClass via errorHandler.
+ *
+ * Two patterns are used:
+ * 1. **Validate-then-cast** (for runtime objects): calls validatorHelper.check*,
+ *    then returns the value cast to the expected type.
+ * 2. **Interface parse** (for plain data objects): calls the interface's own parse* function
+ *    (which returns T | null), then throws via errorBuilder.ifDataNotValid if null.
+ *
+ * @staticMethods
+ * Validate-then-cast:
+ * - parseSocket(data)              → Socket
+ * - parseStore(store)              → store
+ * - parseRTCPeerConnection(data)   → RTCPeerConnection
+ * - parseRTCDataChannel(data)      → RTCDataChannel
+ * - parseRtcIceCandidate(data)     → RTCIceCandidate
+ *
+ * Interface parse:
+ * - parseCommonParamsInterface(data)       → ICommonParams.commonParams
+ * - parseCallSignalingInterface(data)      → ICallSignaling.callSignaling
+ * - parseCallDetailsInterface(data)        → ICallDetails.callDetails
+ * - parseNotificationInterface(data)       → INotification.notification
+ * - parseAllowConnectionsInterface(data)   → IAllowConnections.allowConnections
+ * - parseClientRequestInterface(data)      → IClientRequest.clientRequest
+ * - parseWebRTCSignalingInterface(data)    → IWebRtcSignaling.webRtcSignaling
+ * - parsePeersInterface(data)              → IPeers.peers
+ * - parsePeerInterface(data)               → IPeer.peer
+ * - parseTotalInterface(data)              → ITotal.total
+ *
+ * @see validatorHelper  - performs the underlying type guard checks
+ * @see errorBuilder     - constructs ifDataNotValid errors
+ * @see errorHandler     - throws/propagates parserErrorClass on failure
+ */
 import { Socket } from "socket.io-client";
 import { store } from "../classes/classes.js";
 import {

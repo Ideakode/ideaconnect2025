@@ -1,3 +1,40 @@
+/**
+ * @file errorBuilder.ts
+ * @class errorBuilder
+ *
+ * @description
+ * Factory class that creates pre-populated typed error instances for every standard failure
+ * condition in the application. Each static method accepts the target error type (from errorTypes),
+ * the method name, and any contextual data — then returns a fully constructed baseErrorClass
+ * subclass ready to be thrown via errorHandler.throwError / errorHandler.propagateError*.
+ *
+ * Callers pass `errorTypes.VALIDATOR`, `errorTypes.SERVICE`, etc. as the `type` argument so the
+ * same builder method can produce the correct subclass regardless of the calling layer.
+ *
+ * @staticMethods — one per failure condition
+ * - ifDataNotValid(type, method, received)          - interface shape validation failure
+ * - socketNotValid(type, method, received)          - socket is null / not a Socket instance
+ * - storeNotValid(type, method, received)           - store is null / fails isStore check
+ * - storeANotValid(type, method, rcvd)              - storeAgent is null
+ * - storeSNotValid(type, method, rcvd)              - storeStranger is null
+ * - dataChannelNotValid(type, method, received)     - RTCDataChannel is null
+ * - rtcNotValid(type, method, received)             - RTCPeerConnection is null
+ * - rtcIceNotValid(type, method, received)          - RTCIceCandidate is invalid
+ * - htmlElNotValid(type, method, elName)            - DOM element not found
+ * - callDetailsNull(type, method)                   - currentCallDetails is null when expected
+ * - callDetailsNotNull(type, method, cDetails)      - currentCallDetails is not null when it should be
+ * - callDetailsDiffer(type, method, callIds)        - incoming callId doesn't match stored callId
+ * - callIsActiveState(type, method)                 - call is already CONNECTED
+ * - peerNotIdle(type, method, state)                - callState is not IDLE
+ * - peerTypeNotValid(type, method, pType)           - peerType is not AGENT or STRANGER
+ * - peerNotKnown(type, method, href)                - URL pathname doesn't match any namespace
+ * - agentNotAvailableCalls(type, method)            - agent's allowConnections is false
+ * - nspcNotValid(type, method, nspc)                - namespace is not /agent or /stranger
+ * - nspcPeerDiffer(type, method, nspc, pType)       - namespace and peerType disagree
+ *
+ * @see errorHandler  - (client/js/base/errors/error.handler.ts) throws/wraps the returned errors
+ * @see errorTypes    - (client/js/base/errors/errorTypes.ts) type string constants
+ */
 import {
   parserErrorClass,
   validatorErrorClass,

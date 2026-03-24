@@ -1,3 +1,29 @@
+/**
+ * @file store.class.ts
+ * @class storeClass
+ *
+ * @description
+ * Base class representing the client-side state store for a connected peer (Agent or Stranger).
+ * Holds all runtime state needed to manage a peer's socket connection, active call, and
+ * WebRTC session. Extended by storeAgentClass and storeStrangerClass to add peer-specific state.
+ *
+ * @properties
+ * - socket            - The Socket.IO client socket for this peer's connection to the server.
+ * - callState         - Current call lifecycle state (see constants.callState: IDLE, IN_PROGRESS,
+ *                       ALERTING, WEBRTC_PROGRESS, CONNECTED).
+ * - currentCallDetails - Details of the active or pending call (type, parties, IDs). Null when idle.
+ * - peerConnection    - The WebRTC RTCPeerConnection instance for the active call. Null when idle.
+ * - dataChannel       - The WebRTC RTCDataChannel used for chat messaging. Null when idle.
+ * - streams           - Local and remote media streams for audio/video calls. Null when idle.
+ *
+ * @methods
+ * - resetCurrentCallDetails() - Clears the current call details, used on call teardown.
+ *
+ * @extends
+ * - storeAgentClass  (client/js/agent/classes/)
+ * - storeStrangerClass (client/js/stranger/classes/)
+ */
+
 import { Socket } from "socket.io-client";
 import { ICallDetails, IStreams } from "../interfaces/interfaces.js";
 

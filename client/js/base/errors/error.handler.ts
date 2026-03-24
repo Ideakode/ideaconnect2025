@@ -1,3 +1,37 @@
+/**
+ * @file error.handler.ts
+ * @class errorHandler
+ *
+ * @description
+ * Central static utility for wrapping, re-typing, logging, and throwing errors across all
+ * architectural layers. The two fundamental operations are:
+ *
+ * - **wrap**      — converts an existing baseErrorClass into a new typed error of the target layer
+ *                   (e.g. a parserError caught in a service becomes a serviceError).
+ *                   Returns the wrapped error without throwing. Optionally logs it.
+ * - **propagate** — wraps then immediately throws (return type: never). Always logs by default.
+ * - **throwError** — throws the error as-is (no re-typing). Logs if logIt is true.
+ *
+ * @staticMethods — one wrap/propagate pair per layer
+ * - wrapErrorParser / propagateErrorParser
+ * - wrapErrorValidator / propagateErrorValidator
+ * - wrapErrorService / propagateErrorService
+ * - wrapErrorUI / propagateErrorUI
+ * - wrapErrorUseCase / propagateErrorUseCase    (logIt defaults to true)
+ * - wrapErrorEventHandler / propagateErrorEventHandler
+ * - wrapErrorClass / propagateErrorClass
+ * - wrapErrorBase / propagateErrorBase          (logIt defaults to true)
+ * - throwError(by, error, logIt)                (shared terminal throw)
+ *
+ * @param by     - name of the calling class (used as label in logErrors.send)
+ * @param error  - unknown caught value; only re-typed if it is a baseErrorClass instance
+ * @param method - name of the calling method, stored in the resulting error's .method property
+ * @param logIt  - whether to call logErrors.send (default false for wrap, true for propagate/throw)
+ *
+ * @see errorBuilder  - constructs typed errors with standard messages
+ * @see logErrors     - (client/js/base/logs/logErrors.ts) performs the actual console output
+ * @see errorTypes    - (client/js/base/errors/errorTypes.ts) maps layer names to class name strings
+ */
 import {
   parserErrorClass,
   validatorErrorClass,

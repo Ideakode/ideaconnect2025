@@ -1,3 +1,29 @@
+/**
+ * @file dashboard.elements.ts
+ * @class dashboardElements
+ *
+ * @description
+ * Handles all DOM creation and manipulation for the dashboard component.
+ * Called exclusively by the dashboard facade class.
+ *
+ * @staticMethods
+ * - createDashboard(peerType, name?): HTMLDivElement
+ *     Assembles the full dashboard structure: container + logo + description + blur overlay.
+ * - toggleDashboard(show): void
+ *     Retrieves #dashboard_container and shows/hides it via uiHelper.
+ * - setPeerName(name): void  /  getPeerNameSpan(): HTMLSpanElement
+ *     Reads and writes the #agent_name span used to display the peer's name.
+ *
+ * Private builders (DOM construction helpers):
+ * - createDashboardContainer()   → <div class="dashboard_container" id="dashboard_container">
+ * - createDashboardLogo()        → <div class="logo_container"><img logoIdea.png></div>
+ * - createDashboardDescription() → description paragraph with inline #agent_name span
+ * - createDashboardBlur()        → <div class="dashboard_blur display_none" id="dashboard_blur">
+ *
+ * @see dashboardReferences  - (./dashboard.references.ts) DOM id/class name constants
+ * @see dashboardTexts       - (./dashboard.texts.ts) description paragraph text
+ * @see uiHelper             - showElement / hideElement
+ */
 import { errorHandler } from "../../errors/errors.js";
 import { root } from "../ui.js";
 import { uiHelper, validatorHelper } from "../../helpers/helpers.js";

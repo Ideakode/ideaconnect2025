@@ -1,3 +1,32 @@
+/**
+ * @file messenger.elements.ts
+ * @class messengerElements
+ *
+ * @description
+ * Handles all DOM creation, querying, and mutation for the messenger component.
+ * Called exclusively by the messenger facade and messengerEventHandler.
+ *
+ * @staticMethods — creation
+ * - createMessenger(name, connected): HTMLDivElement
+ *     Assembles the full messenger structure: title + messages area + new-message bar.
+ *
+ * @staticMethods — query / access
+ * - getSendMessageButton(messenger): HTMLButtonElement
+ *     Queries #send_message_button within the supplied messenger container.
+ * - getNewMessageInput(): HTMLInputElement      (queries #new_message_input from document)
+ * - getChatMessageText(): string               (returns getNewMessageInput().value)
+ *
+ * @staticMethods — mutation
+ * - toggleMessengerEnabled(connected): void
+ *     Adds/removes the "disabled" CSS class on the messenger container.
+ * - updateMessengerTitleState(connected): void
+ *     Updates #messenger_title_state text to "Connected to" or "Connecting with".
+ * - closeMessenger(): void                     (throws if container absent)
+ * - closeMessengerIfOpen(): void               (null-safe remove)
+ *
+ * @see messengerReferences  - (./messenger.references.ts) id/class name constants
+ * @see messengerTexts       - (./messenger.texts.ts) title text helper
+ */
 import texts from "./messenger.texts.js";
 import messengerReferences from "./messenger.references.js";
 import messengerTexts from "./messenger.texts.js";

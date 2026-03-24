@@ -1,3 +1,35 @@
+/**
+ * @file chat.view.ts
+ * @class chatView
+ *
+ * @description
+ * The agent's active chat call view. Shown when a CHAT call is accepted and
+ * the WebRTC data channel is ready. Assembles the messenger and finish-call button,
+ * wraps them in a view container, and attaches to the given parent element.
+ * Also provides lifecycle methods to show, hide, destroy, and refresh the view.
+ *
+ * @staticMethods
+ * - create(cParams, cDetails, attachToId, fnSendMsg, fnEndCall)
+ *     — builds messenger + finish button; appends to attachToId element
+ * - show()            — removes display_none from the view wrapper
+ * - hide()            — adds display_none to the view wrapper
+ * - destroy()         — removes the view wrapper from the DOM
+ * - destroyIfExists() — removes the view wrapper only if it exists
+ * - refresh(cParams)  — delegates to messenger.refreshState(callState)
+ *
+ * @html (wrapper structure)
+ * ```html
+ * <div id="view_chat" class="view view_chat">
+ *   <!-- messenger component -->
+ *   <!-- finish call button -->
+ * </div>
+ * ```
+ *
+ * @see viewsReferences  — provides view_chat id and class constants
+ * @see messenger        — chat panel with message input and history
+ * @see callButtons      — finish call button passed fnEndCall callback
+ * @see uiAgentService   — will call create/destroy/show/hide when view switching is implemented
+ */
 import { errorHandler } from "../../errors/errors.js";
 import { validatorAHelper, uiHelper } from "../../helpers/helpers.js";
 import * as ui from "../ui.js";

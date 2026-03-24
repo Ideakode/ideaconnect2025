@@ -1,3 +1,29 @@
+/**
+ * @file callNewIncoming.ts
+ * @class callNewIncoming
+ *
+ * @description
+ * Use case for handling a new incoming call INVITE from a stranger.
+ * Validates that the agent is idle and available before accepting the call into state,
+ * then opens the incoming call dialog for the agent to accept or reject.
+ *
+ * @flow
+ * callSignaling (INVITE) → callNewIncoming.execute(cParams, data)
+ *   1. validatorAgentHelper.canAgentReceiveCall(store)
+ *      — confirms callState=IDLE, callDetails=null, availableForClients=true
+ *   2. storeAgentService.setCallInProgress(store, cDetails)
+ *      — saves callDetails and sets callState=IN_PROGRESS
+ *   3. uiAgentService.openIncomingCallDialog(cParams, cDetails)
+ *      — shows dialog with Accept (callAccepted) and Reject (callRejected) buttons
+ *
+ * @errorHandling
+ * useCaseErrors.sendBusyIfNeeded — if the agent cannot take the call (not idle, not
+ * available, or call already active), automatically sends CALL_BUSY back to the caller.
+ *
+ * @see callAccepted   - wired as fnAccept in the dialog
+ * @see callRejected   - wired as fnReject in the dialog
+ * @see useCaseErrors.sendBusyIfNeeded
+ */
 import { ICommonParams, ICallDetails } from "../../interfaces/interfaces.js";
 import { storeASvc, uiASvc } from "../../services/services.js";
 import { useCaseErrors } from "../usesCases.js";

@@ -1,3 +1,31 @@
+/**
+ * @file default.view.ts
+ * @class defaultView
+ *
+ * @description
+ * The agent's default (landing) view. Shown when the agent is idle and waiting
+ * for calls. Assembles the dashboard, allowConnections checkboxes, and total
+ * strangers counter, then attaches them inside a wrapper div appended to the
+ * given parent element.
+ *
+ * @staticMethods
+ * - create(attachToId) — builds and appends defaultView content into the given parent id
+ * - show()             — removes display_none from the view wrapper
+ * - hide()             — adds display_none to the view wrapper
+ *
+ * @html (wrapper structure)
+ * ```html
+ * <div id="view_default" class="view view_default">
+ *   <!-- dashboard with allowConnections and totalStrangers appended inside -->
+ * </div>
+ * ```
+ *
+ * @see viewsReferences     — provides view_default id and class constants
+ * @see dashboard           — main panel containing agent name and blur overlay
+ * @see allowConnections    — availability checkboxes appended into dashboard
+ * @see totalStrangers (UI) — stranger count status appended into dashboard
+ * @see uiAgentService.initializeUI — calls defaultView.create during bootstrap
+ */
 import { viewsReferences } from "./views.references.js";
 import * as constants from "../../constants/constants.js";
 import { errorHandler } from "../../errors/errors.js";

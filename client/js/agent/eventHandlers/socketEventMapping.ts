@@ -1,3 +1,27 @@
+/**
+ * @file socketEventMapping.ts
+ *
+ * @description
+ * Defines the agent's socket event map — the complete list of Socket.IO events the agent
+ * listens for, paired with their use case execute() callbacks. Built once at module load
+ * and passed to socketService.initService() by agentInitialization.
+ *
+ * @mappings (active)
+ * - CONNECT           → agentConnected.execute      — syncs availability flags and requests
+ *                                                      total strangers count on (re)connect
+ * - SERVER_NOTIFICATION → serverNotification.execute — handles TOTAL_STRANGERS and PEER_INFO
+ *                                                      server-push notifications
+ * - CALL_SIGNALING    → callSignaling.execute        — routes INVITE / CANCEL / NOT_FOUND /
+ *                                                      CALL_BUSY to the appropriate call use case
+ * - WEBRTC_SIGNALING  → webRtcSignaling.execute      — routes OFFER / ICE_CANDIDATE to WebRTC
+ *                                                      use cases
+ *
+ * @mappings (commented out / not active)
+ * - DISCONNECT, CONNECT_ERROR — not yet wired
+ *
+ * @see socketEventHandler  - (base/eventHandlers/socket.eventHandler.ts) registers these on the socket
+ * @see agentInitialization - passes this map to socketService.initService()
+ */
 import * as constants from "../constants/constants.js";
 import { IEventMap, IEventsMap } from "../interfaces/interfaces.js";
 import { callSignaling } from "../useCases/call/callSignaling.js";

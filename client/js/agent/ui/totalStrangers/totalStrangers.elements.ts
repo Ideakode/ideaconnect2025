@@ -1,3 +1,28 @@
+/**
+ * @file totalStrangers.elements.ts
+ * @class totalStrangerElements
+ *
+ * @description
+ * DOM creation and query layer for the totalStrangers component. Builds the
+ * status container with a static label and a live-updated count span.
+ *
+ * @html
+ * ```html
+ * <div class="stranger_current_status_container">
+ *   <p class="stranger_container_paragraph">Status</p>
+ *   <p class="stranger_container_paragraph">Clients connected:
+ *     <span id="stranger_total_available"></span>
+ *   </p>
+ * </div>
+ * ```
+ *
+ * @staticMethods
+ * - getTotalStrangersSpan()  — queries and returns #stranger_total_available
+ * - createStrangerStatus()   — builds and returns the full status container
+ *
+ * @see totalStrangersReferences — provides id and class name constants
+ * @see totalStrangers           — facade that delegates to this class
+ */
 import { totalStrangersReferences } from "./totalStrangers.references.js";
 import { totalStrangersTexts } from "./totalStrangers.texts.js";
 import { validatorAHelper } from "../../helpers/helpers.js";

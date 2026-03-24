@@ -1,3 +1,28 @@
+/**
+ * @file rootAgent.ts
+ * @class rootAgent
+ *
+ * @description
+ * Facade for the agent's root DOM container. Creates the outermost `<div id="root">`
+ * and appends it to `document.body`. Exposes CSS class and ID registries through
+ * `getClasses()` and `getIDs()`.
+ *
+ * @note
+ * The dashboard, allowConnections, and totalStrangers sub-component creation
+ * inside `initializeRootElements` is currently commented out — child components
+ * are now assembled by the view layer instead. Also note that `getIDs()` currently
+ * returns `rootAgentReferences.classes` (the same as `getClasses()`), which appears
+ * to be a copy-paste bug — it should return `rootAgentReferences.IDs`.
+ *
+ * @staticMethods
+ * - initializeRootElements() — creates root container and appends to document.body
+ * - getClasses()             — returns rootAgentReferences.classes registry
+ * - getIDs()                 — returns rootAgentReferences.classes (bug: should be .IDs)
+ *
+ * @see rootAgentElements   — extends root.rootElements; delegates DOM creation
+ * @see rootAgentReferences — extends root.rootReferences; provides id/class constants
+ * @see uiAgentService.initializeUI — calls initializeRootElements during bootstrap
+ */
 import * as constants from "../../constants/constants.js";
 import { logger } from "../../logs/logs.js";
 import { errorHandler } from "../../errors/errors.js";

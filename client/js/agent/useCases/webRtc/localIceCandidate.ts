@@ -1,3 +1,26 @@
+/**
+ * @file localIceCandidate.ts
+ * @class localIceCandidate
+ *
+ * @description
+ * Use case triggered by the WebRTC `icecandidate` event on the local
+ * RTCPeerConnection. Forwards the locally gathered ICE candidate to the
+ * calling stranger via the socket signaling channel so they can attempt
+ * a direct peer-to-peer connection path.
+ * Null candidates (end-of-candidates signal) are silently ignored.
+ *
+ * @flow
+ * webRtcEventMapping (ICE_CANDIDATE) → localIceCandidate.execute(cParams, cDetails, iceData)
+ *   1. Validates storeAgent, callId match
+ *   2. If iceData !== null:
+ *      - messageBuilder.buildWebRTCSignalingIceCandidate(cDetails, ice, callingPartyId)
+ *      - socketAgentService.sendWebRTCSignaling(socket, msg)
+ *
+ * @errorHandling  useCaseErrors.executeDefault (logs, does not rethrow)
+ *
+ * @see webRtcEventMapping — wires icecandidate event → this use case
+ * @see remoteIceCandidate — the counterpart that receives and applies ICE candidates
+ */
 import { storeASvc, socketASvc } from "../../services/services.js";
 import { useCaseErrors } from "../usesCases.js";
 import { logger } from "../../logs/logs.js";

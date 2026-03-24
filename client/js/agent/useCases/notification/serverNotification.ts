@@ -1,3 +1,24 @@
+/**
+ * @file serverNotification.ts
+ * @class serverNotification
+ *
+ * @description
+ * Dispatcher use case for all inbound SERVER_NOTIFICATION socket events.
+ * Parses the raw notification envelope, then routes to the appropriate
+ * sub-use-case based on the notification type.
+ *
+ * @flow
+ * SERVER_NOTIFICATION → serverNotification.execute(cParams, data)
+ *   - TOTAL_STRANGERS → totalStrangers.execute(cParams, ITotal.total)
+ *   - PEER_INFO       → peerInfo.execute(cParams, IPeer.peer)
+ *   - default         → logs "Nothing to execute"
+ *
+ * @errorHandling  useCaseErrors.executeDefault (logs, does not rethrow)
+ *
+ * @see socketEventMapping — registers this as the SERVER_NOTIFICATION callback
+ * @see totalStrangers     — updates the stranger count display
+ * @see peerInfo           — updates the agent name in the dashboard
+ */
 import * as constants from "../../constants/constants.js";
 import { useCaseErrors } from "../usesCases.js";
 import { logger } from "../../logs/logs.js";

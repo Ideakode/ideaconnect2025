@@ -1,3 +1,30 @@
+/**
+ * @file storeAgent.service.ts
+ * @class storeAgentService
+ *
+ * @description
+ * Agent-specific store service. Extends storeService with methods for reading and writing
+ * the agent's availability flags and for creating the agent's store instance.
+ * All base store mutation methods are inherited.
+ *
+ * @extends storeService  - (client/js/base/services/store.service.ts)
+ *
+ * @staticMethods (agent-specific)
+ * - createStore(): storeA
+ *     Factory that instantiates a new storeAgentClass with all defaults (unavailable, idle).
+ *     Called once by agentInitialization.execute().
+ *
+ * - getAllowConnectionStatus(peerType, storeA): boolean
+ *     Returns availableForClients (peerType=STRANGER) or availableForAgents (peerType=AGENT).
+ *     Used by agentConnected to read the current status before syncing with the server,
+ *     and by availableForConnections before toggling.
+ *
+ * - setAllowConnectionStatus(peerType, value, storeAgent)
+ *     Writes availableForClients or availableForAgents based on peerType.
+ *     Called by availableForConnections after the UI checkbox is toggled.
+ *
+ * @see storeAgentClass  - the store type managed by this service
+ */
 import * as constants from "../constants/constants.js";
 import { storeSvc } from "../../base/services/services.js";
 import { errorHandler } from "../errors/errors.js";

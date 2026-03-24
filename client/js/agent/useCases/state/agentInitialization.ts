@@ -1,3 +1,29 @@
+/**
+ * @file agentInitialization.ts
+ * @class agentInitialization
+ *
+ * @description
+ * Bootstrap use case. The first and only use case called from index.ts.
+ * Performs the complete startup sequence for the agent client in a single execute() call:
+ *   1. Creates a fresh storeAgentClass instance via storeAgentService.createStore()
+ *   2. Wraps it in a commonParams object
+ *   3. Initializes the agent UI (root container + allowConnections checkboxes)
+ *      via uiAgentService.initializeUI()
+ *   4. Creates the Socket.IO socket on the /agent namespace and registers all
+ *      socket event listeners via socketService.initService()
+ *
+ * @flow
+ * index.ts → agentInitialization.execute()
+ *   → storeAgentService.createStore()
+ *   → uiAgentService.initializeUI(cParams)
+ *   → socketAgentService.initService(cParams, socketEventMapping, "/agent", "agent")
+ *     → socketEventHandler.registerEvents(cParams, socketEventMapping)
+ *
+ * @errorHandling  useCaseErrors.executeDefault (logs, does not rethrow)
+ *
+ * @see socketEventMapping  - the event map passed to initService
+ * @see uiAgentService      - initializes the DOM
+ */
 import * as constants from "../../constants/constants.js";
 import { ICommonParams } from "../../interfaces/interfaces.js";
 import { storeASvc, socketASvc, uiASvc } from "../../services/services.js";

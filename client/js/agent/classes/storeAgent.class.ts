@@ -1,3 +1,29 @@
+/**
+ * @file storeAgent.class.ts
+ * @class storeAgentClass
+ *
+ * @description
+ * Agent-specific runtime state store. Extends storeClass with two boolean flags that
+ * track whether this agent is currently accepting incoming calls from strangers (clients)
+ * and/or from other agents. These flags are toggled by the agent via the allowConnections UI
+ * and synced to the server on each socket connect event.
+ *
+ * @extends storeClass  - (client/js/base/classes/store.class.ts)
+ *
+ * @properties (agent-specific)
+ * - availableForClients  - true when the agent accepts calls from strangers.
+ *                          Corresponds to the "Available for Client connections" checkbox.
+ * - availableForAgents   - true when the agent accepts calls from other agents.
+ *                          Corresponds to the "Available for Agent Connections" checkbox.
+ *
+ * Both default to false on construction (agent starts unavailable).
+ *
+ * @usedBy
+ * - storeAgentService.createStore()             - instantiates this class
+ * - storeAgentService.getAllowConnectionStatus() - reads the relevant flag by peerType
+ * - storeAgentService.setAllowConnectionStatus() - writes the relevant flag by peerType
+ * - validatorAgentHelper.isStoreAgent()         - checks for these properties as the type guard
+ */
 import { Socket } from "socket.io-client";
 import { store } from "../../base/classes/classes.js";
 import * as constants from "../constants/constants.js";

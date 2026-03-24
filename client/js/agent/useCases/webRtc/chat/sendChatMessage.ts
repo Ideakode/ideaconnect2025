@@ -1,3 +1,21 @@
+/**
+ * @file sendChatMessage.ts
+ * @class sendChatMessage
+ *
+ * @description
+ * Stub use case for sending a chat message over the WebRTC data channel.
+ * Not yet implemented.
+ *
+ * @note
+ * The full implementation is commented out. It was originally written to:
+ * retrieve the message from the chat UI input, send it via the data channel,
+ * append it to the messenger view, and clear the input.
+ * Depends on view management (chat view + messenger) being implemented first.
+ * Referenced by callAccepted.ts as the `fnSendMsg` callback to pass to the chat view.
+ *
+ * @see callAccepted   — passes sendChatMessage.execute as fnSendMsg to the chat view
+ * @see dataChannelMessage — the inbound counterpart (also a stub)
+ */
 /* import * as interfaces from "../../../interfaces/interfaces.js";
 import * as constants from "../../../constants/constants.js";
 import { logger } from "../../../logs/logs.js";

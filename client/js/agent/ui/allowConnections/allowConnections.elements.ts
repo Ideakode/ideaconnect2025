@@ -1,3 +1,38 @@
+/**
+ * @file allowConnections.elements.ts
+ * @class allowConnectionsElements
+ *
+ * @description
+ * DOM creation and query layer for the allowConnections component.
+ * Builds two checkbox rows (STRANGER + AGENT) and provides getters
+ * for each checkbox div and its checkmark image element.
+ *
+ * @html
+ * ```html
+ * <div class="available_for_connections_container" id="available_for_connections_container">
+ *   <div class="checkbox_container">
+ *     <div class="checkbox_connection" id="allow_clients_checkbox">
+ *       <img src="./utils/images/check.png" class="display_none" id="allow_clients_checkbox_img" />
+ *     </div>
+ *     <p class="checkbox_container_paragraph">Available for Client connections</p>
+ *   </div>
+ *   <div class="checkbox_container">
+ *     <div class="checkbox_connection" id="allow_agents_checkbox">
+ *       <img src="./utils/images/check.png" class="display_none" id="allow_agents_checkbox_img" />
+ *     </div>
+ *     <p class="checkbox_container_paragraph">Available for Agent Connections</p>
+ *   </div>
+ * </div>
+ * ```
+ *
+ * @staticMethods
+ * - getCheckbox(peerType)    — returns the checkbox div for STRANGER or AGENT
+ * - getCheckboxImg(peerType) — returns the checkmark img for STRANGER or AGENT
+ * - createAllowConnections() — builds and returns the full container
+ *
+ * @see allowConnectionsReferences — provides all id and class name constants
+ * @see allowConnections           — facade that delegates to this class
+ */
 import * as constants from "../../constants/constants.js";
 import { validatorAHelper } from "../../helpers/helpers.js";
 import { allowConnectionsReferences } from "./allowConnections.references.js";

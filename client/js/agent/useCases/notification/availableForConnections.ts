@@ -1,3 +1,24 @@
+/**
+ * @file availableForConnections.ts
+ * @class availableForConnections
+ *
+ * @description
+ * Use case triggered when the agent clicks one of the availability checkboxes
+ * (Allow Clients / Allow Agents). Reads the current flag from the store,
+ * toggles it, then synchronizes UI, store, and server in that order.
+ *
+ * @flow
+ * allowConnections (checkbox click) → availableForConnections.execute(cParams, forPeer)
+ *   1. storeAgentService.getAllowConnectionStatus(forPeer, store)  — read current value
+ *   2. uiAgentService.refreshAvailableForConnections(forPeer, !allow)  — update checkbox UI
+ *   3. storeAgentService.setAllowConnectionStatus(forPeer, !allow, store)  — persist in store
+ *   4. socketAgentService.notifyAgentAvailable(socket, !allow, forPeer)  — notify server
+ *
+ * @errorHandling  useCaseErrors.executeDefault (logs, does not rethrow)
+ *
+ * @see allowConnections.eventHandler — wires checkbox click → this use case
+ * @see socketAgentService.notifyAgentAvailable — emits AGENT_AVAILABLE to server
+ */
 import { ICommonParams } from "../../interfaces/interfaces.js";
 import { storeASvc, socketASvc, uiASvc } from "../../services/services.js";
 import { useCaseErrors } from "../usesCases.js";

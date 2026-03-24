@@ -1,3 +1,24 @@
+/**
+ * @file callSignaling.ts
+ * @class callSignaling
+ *
+ * @description
+ * Dispatcher use case for all inbound call signaling messages received on the
+ * CALL_SIGNALING socket event. Parses the raw socket data into a typed callSignaling
+ * interface, then routes to the appropriate sub-use-case based on callStatus.status.
+ *
+ * @flow
+ * CALL_SIGNALING → callSignaling.execute(cParams, data)
+ *   - INVITE    → callNewIncoming.execute
+ *   - CANCEL    → callCancelled.execute
+ *   - NOT_FOUND → callNotFound.execute
+ *   - CALL_BUSY → callBusy.execute
+ *   - BYE       → (commented out, not yet implemented)
+ *
+ * @errorHandling  useCaseErrors.executeDefault (logs, does not rethrow)
+ *
+ * @see socketEventMapping  - registers this as the CALL_SIGNALING callback
+ */
 import * as constants from "../../constants/constants.js";
 import { useCaseErrors } from "../usesCases.js";
 import { logger } from "../../logs/logs.js";

@@ -1,3 +1,24 @@
+/**
+ * @file agentConnected.ts
+ * @class agentConnected
+ *
+ * @description
+ * Use case triggered by the Socket.IO CONNECT event. Handles the agent's post-connection
+ * sync with the server, ensuring the server's view of this agent's availability matches
+ * the locally stored flags (important for recovery after an abnormal disconnect).
+ *
+ * @flow
+ * CONNECT → agentConnected.execute(cParams)
+ *   1. Reads the current availableForClients flag from the store
+ *   2. Emits AGENT_AVAILABLE for both STRANGER and AGENT peer types to re-sync with the server
+ *   3. Emits TOTAL_STRANGERS request to get a fresh connected-strangers count
+ *
+ * @errorHandling  useCaseErrors.executeDefault (logs, does not rethrow)
+ *
+ * @see socketEventMapping      - registers this as the CONNECT callback
+ * @see socketAgentService.notifyAgentAvailable
+ * @see socketAgentService.requestTotalStrangers
+ */
 import * as constants from "../../constants/constants.js";
 import { storeASvc, socketASvc } from "../../services/services.js";
 import { useCaseErrors } from "../usesCases.js";

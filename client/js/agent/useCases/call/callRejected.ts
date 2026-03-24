@@ -1,3 +1,23 @@
+/**
+ * @file callRejected.ts
+ * @class callRejected
+ *
+ * @description
+ * Use case triggered when the agent clicks Reject in the incoming call dialog.
+ * Resets the agent's call state, sends a CALL_REJECTED signaling message to the caller,
+ * and closes the call dialog.
+ *
+ * @flow
+ * callDialog (Reject button) → callRejected.execute(cParams, data)
+ *   1. Validates store and call (callId match)
+ *   2. storeAgentService.resetCall(store)    — clears callDetails, sets callState=IDLE
+ *   3. Sends CALL_REJECTED to callingPartyId via socketAgentService.sendCallSignaling
+ *   4. uiAgentService.closeIncomingCallDialog() — removes dialog from DOM
+ *
+ * @errorHandling  useCaseErrors.executeDefault (logs, does not rethrow)
+ *
+ * @see callDialog (base/ui) - the reject button triggers this
+ */
 import { storeASvc, socketASvc, uiASvc } from "../../services/services.js";
 import { useCaseErrors } from "../usesCases.js";
 import { logger } from "../../logs/logs.js";

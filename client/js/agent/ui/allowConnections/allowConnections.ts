@@ -1,3 +1,24 @@
+/**
+ * @file allowConnections.ts
+ * @class allowConnections
+ *
+ * @description
+ * Facade for the agent's availability checkboxes UI component. Provides two
+ * checkboxes — one for stranger connections and one for agent connections —
+ * allowing the agent to toggle their availability independently for each peer type.
+ *
+ * @staticMethods
+ * - registerAllowConnectionsEvents(cParams, forPeers[]) — registers click listeners
+ *   on each checkbox div for the specified peer types
+ * - setAllowConnectionsCheckBox(allow, forPeer) — shows or hides the checkmark
+ *   image based on the allow flag
+ * - createAllowConnections() — builds and returns the full checkboxes container
+ *
+ * @see allowConnectionsElements   — DOM creation and queries
+ * @see allowConnectionsEventHandler — wires click events to availableForConnections use case
+ * @see uiAgentService.refreshAvailableForConnections — calls setAllowConnectionsCheckBox
+ * @see uiAgentService.initializeUI — calls registerAllowConnectionsEvents + createAllowConnections
+ */
 import { ICommonParams } from "../../interfaces/interfaces.js";
 import { errorHandler } from "../../errors/errors.js";
 import { uiHelper } from "../../helpers/helpers.js";

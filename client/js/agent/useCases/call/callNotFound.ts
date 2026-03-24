@@ -1,3 +1,25 @@
+/**
+ * @file callNotFound.ts
+ * @class callNotFound
+ *
+ * @description
+ * Use case triggered when the server returns a NOT_FOUND signaling status,
+ * meaning the called stranger's socket is no longer connected. Closes any open
+ * call dialog, displays a brief info notification, then resets call state when
+ * the notification closes.
+ *
+ * @flow
+ * callSignaling (NOT_FOUND) → callNotFound.execute(cParams, cDetails)
+ *   1. Validates commonParams and callDetails (callId match)
+ *   2. uiAgentService.closeIncomingCallDialog()    — close dialog if open
+ *   3. uiAgentService.openInfoDialog(NOT_FOUND, storeASvc.resetCall, 3s, store)
+ *      — shows "Peer Not Found" notification; resets call state on close
+ *
+ * @errorHandling  useCaseErrors.executeDefault (logs, does not rethrow)
+ *
+ * @see callSignaling — dispatches to this on NOT_FOUND status
+ * @see uiAgentService.openInfoDialog — handles the timed notification + callback
+ */
 import * as constants from "../../constants/constants.js";
 import { ICommonParams, ICallDetails } from "../../interfaces/interfaces.js";
 import { storeASvc, uiASvc } from "../../services/services.js";

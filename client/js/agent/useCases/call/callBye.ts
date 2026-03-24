@@ -1,3 +1,20 @@
+/**
+ * @file callBye.ts
+ * @class callBye
+ *
+ * @description
+ * Stub use case for handling a BYE signaling message (call end initiated by
+ * either party during an active call). Not yet implemented.
+ *
+ * @note
+ * The full implementation is commented out — it was originally ported from the
+ * stranger side and references stranger services (storeSSvc, socketSSvc, uiSSvc)
+ * that do not exist on the agent side. Needs to be rewritten for the agent context.
+ * The BYE branch in callSignaling.ts is also commented out pending this work.
+ *
+ * @see callSignaling — BYE case is commented out, waiting for this implementation
+ * @see callEnded     — the agent-side call teardown use case (also a stub)
+ */
 /*import * as constants from "../../constants/constants.js";
 import { logger } from "../../logs/logs.js";
 import {

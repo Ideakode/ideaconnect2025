@@ -1,3 +1,24 @@
+/**
+ * @file totalStrangers.ts
+ * @class totalStrangers
+ *
+ * @description
+ * Use case triggered when the server sends a TOTAL_STRANGERS notification,
+ * carrying the current count of strangers connected to the site.
+ * Updates the total strangers counter in the agent dashboard.
+ *
+ * @flow
+ * serverNotification (TOTAL_STRANGERS) → totalStrangers.execute(cParams, ITotal.total)
+ *   1. Validates commonParams and storeAgent
+ *   2. parserAHelper.parseTotalInterface(data)  — typed ITotal.total
+ *   3. uiAgentService.refreshTotalStrangers(total)  — updates the counter display
+ *
+ * @errorHandling  useCaseErrors.executeDefault (logs, does not rethrow)
+ *
+ * @see serverNotification — dispatches to this on TOTAL_STRANGERS type
+ * @see uiAgentService.refreshTotalStrangers — updates the stranger count in the UI
+ * @see agentConnected — requests a fresh count on reconnect via socketASvc.requestTotalStrangers
+ */
 import { ICommonParams, ITotal } from "../../interfaces/interfaces.js";
 import { uiASvc } from "../../services/services.js";
 import { useCaseErrors } from "../usesCases.js";

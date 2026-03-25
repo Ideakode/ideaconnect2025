@@ -1,3 +1,22 @@
+/**
+ * @file peer.class.ts
+ * @class peerClass  (exported as peer)
+ *
+ * @description
+ * Base representation of a connected peer (agent or stranger).
+ * Holds the socket ID, peer type, and optional contact fields.
+ * Used directly for strangers and extended by peerAgentClass for agents.
+ *
+ * @properties
+ * - id        Socket ID assigned by Socket.IO at connection time.
+ * - peerType  Peer type string constant (AGENT or STRANGER).
+ * - name      Display name (empty by default for strangers; randomly assigned for agents).
+ * - email     Optional contact email.
+ * - phone     Optional contact phone number.
+ *
+ * @see peerAgentClass    — extends this class with availability flags
+ * @see storeStrangerClass — stores peer instances directly
+ */
 export class peerClass {
   private _id: string;
   private _peerType: string;

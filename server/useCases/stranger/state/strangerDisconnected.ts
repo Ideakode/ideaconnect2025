@@ -1,3 +1,23 @@
+/**
+ * @file strangerDisconnected.ts
+ * @class strangerDisconnected
+ *
+ * @description
+ * Handles the stranger disconnect socket event. Triggered by socketEventHandler
+ * when a socket in the /STRANGER namespace disconnects.
+ *
+ * Sequence:
+ * 1. Parses commonParams and the disconnected socket.
+ * 2. Verifies the stranger exists in storeS (guards against double-disconnect).
+ * 3. Removes the stranger from storeS directly via storeS.removeStranger.
+ * 4. If removal succeeded, broadcasts the updated total stranger count to all agents.
+ *
+ * @staticMethods
+ * - execute(cParamsData, socketData, reason)  Main handler, called by socketEventHandler.
+ *
+ * @see storeStrangerClass    — removeStranger, getTotalStrangersConnected
+ * @see socketAgentService   — notifyTotalStrangers (broadcast)
+ */
 import { socketAS } from "../../../services/services.js";
 import * as constants from "../../../constants/constants.js";
 import { logger } from "../../../logs/logs.js";

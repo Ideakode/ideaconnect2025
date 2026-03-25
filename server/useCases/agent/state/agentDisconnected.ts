@@ -1,3 +1,25 @@
+/**
+ * @file agentDisconnected.ts
+ * @class agentDisconnected
+ *
+ * @description
+ * Handles the agent disconnect socket event. Triggered by socketEventHandler
+ * when a socket in the /AGENT namespace disconnects.
+ *
+ * Sequence:
+ * 1. Parses commonParams and the disconnected socket.
+ * 2. Verifies the agent exists in storeA (guards against double-disconnect).
+ * 3. Removes the agent from storeA.
+ * 4. If removal succeeded, fetches the updated list of agents available to
+ *    strangers and broadcasts it to all connected strangers via socketSS.
+ *
+ * @staticMethods
+ * - execute(cParamsData, socketData, reasonData)  Main handler, called by socketEventHandler.
+ *
+ * @see storeAgentService    — removeAgent, getAvailableAgentsForStranger
+ * @see socketStrangerService — notifyAvailableAgents (broadcast)
+ * @see interfaceHelper      — transformToIPeers
+ */
 import * as constants from "../../../constants/constants.js";
 import { socketSS, storeAS } from "../../../services/services.js";
 import {

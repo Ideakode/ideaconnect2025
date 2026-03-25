@@ -1,3 +1,32 @@
+/**
+ * @file validator.helper.ts
+ * @class validatorHelper
+ *
+ * @description
+ * Provides guard-style validation methods used at every layer boundary.
+ * Each public method throws a typed error (via errorHandler.throwError) if
+ * the input does not meet the expected shape. Private methods perform the
+ * actual type-guard checks via duck-typing.
+ *
+ * @staticMethods
+ * - checkPeerInStore(id, peerType, store)
+ *     Verifies a peer with the given socket ID exists in the store.
+ *     Throws peerANotInStore or peerSNotInStore (validatorErrorClass) if not found —
+ *     these specific error names are caught by useCaseErrors.replyNotFoundIfNeeded.
+ *
+ * - checkIO(data)      Throws if data is not a valid Socket.IO Server instance.
+ * - checkSocket(data)  Throws if data is not a valid Socket.IO Socket instance.
+ * - checkStore(data, peerType)
+ *     Throws if data is not a valid store of the given peer type
+ *     (storeA for AGENT, storeS for STRANGER, or base store if peerType is omitted).
+ *
+ * - checkCommonParamsInterface(data)  Throws if data is not a valid commonParams object.
+ * - checkNamespace(nspc)             Throws if nspc is not /AGENT or /STRANGER.
+ * - checkPeerType(peer)              Throws if peer is not AGENT or STRANGER.
+ *
+ * @see errorBuilder           — provides named error factory methods
+ * @see useCaseErrors          — catches validatorErrorClass for NOT_FOUND recovery
+ */
 import { Server as IO, Socket } from "socket.io";
 import { store, storeA, storeS } from "../classes/classes.js";
 import * as constants from "../constants/constants.js";

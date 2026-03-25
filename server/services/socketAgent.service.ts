@@ -1,3 +1,30 @@
+/**
+ * @file socketAgent.service.ts
+ * @class socketAgentService  (exported as socketAS)
+ *
+ * @description
+ * Agent-specific socket service. Extends socketService with three methods
+ * that are only relevant to the agent namespace (/AGENT).
+ *
+ * @staticMethods
+ * - initAgent(cParams, eventsMap)
+ *     Delegates to socketEventHandler.init to register the connect listener
+ *     on the /AGENT namespace using the provided events map.
+ *
+ * - notifyTotalStrangers(io, toId, strangers, broadcast)
+ *     Builds a TOTAL_STRANGERS SERVER_NOTIFICATION and sends it to a specific
+ *     agent socket or broadcasts it to all agents.
+ *
+ * - replyNotFound(cParamsData, socketData, sigData, toPeerType)
+ *     Sets the call-signaling status to NOT_FOUND, routes back to the caller's
+ *     socket ID, and emits the CALL_SIGNALING event. Used when a target peer
+ *     is not found in the store.
+ *
+ * @see socketService          — base class
+ * @see socketEventHandler     — used by initAgent
+ * @see agentInitialization    — calls initAgent
+ * @see useCaseErrors          — calls replyNotFound for error recovery
+ */
 import { Server as IOServer } from "socket.io";
 import { socketEventHandler } from "../eventHandlers/eventHandlers.js";
 import * as constants from "../constants/constants.js";

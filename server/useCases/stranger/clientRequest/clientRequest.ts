@@ -1,3 +1,20 @@
+/**
+ * @file clientRequest.ts  (stranger)
+ * @class clientRequest
+ *
+ * @description
+ * Dispatcher use case for client-request events from strangers. Parses the
+ * incoming request, verifies the stranger is in the store, then routes to
+ * the appropriate sub-use-case based on request type.
+ *
+ * Supported types:
+ * - AVAILABLE_AGENTS → availableAgentsRequest.execute
+ *
+ * @staticMethods
+ * - execute(cParamsData, socketData, reqData)  Main handler, called by socketEventHandler.
+ *
+ * @see availableAgentsRequest — handles AVAILABLE_AGENTS requests
+ */
 import * as constants from "../../../constants/constants.js";
 import { logger } from "../../../logs/logs.js";
 import { parserHelper, validatorHelper } from "../../../helpers/helpers.js";

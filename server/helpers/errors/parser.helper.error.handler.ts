@@ -1,3 +1,12 @@
+/**
+ * @file parser.helper.error.handler.ts
+ *
+ * @description
+ * Placeholder file — contents are fully commented out. Originally intended
+ * as a parser-specific error handler subclass of errorHandler.
+ * Error handling for parserHelper is now handled directly by errorHandler
+ * and errorBuilder in parser.helper.ts.
+ */
 /* import { errorHandler, errorTypes } from "./errors.js";
 
 export class parserHelperErrorHandler extends errorHandler {

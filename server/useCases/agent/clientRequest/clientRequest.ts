@@ -1,3 +1,20 @@
+/**
+ * @file clientRequest.ts
+ * @class clientRequest
+ *
+ * @description
+ * Dispatcher use case for client-request events from agents. Parses the
+ * incoming request, verifies the agent is in the store, then routes to
+ * the appropriate sub-use-case based on request type.
+ *
+ * Supported types:
+ * - TOTAL_STRANGERS → totalStrangersRequest.execute
+ *
+ * @staticMethods
+ * - execute(cParamsData, socketData, reqData)  Main handler, called by socketEventHandler.
+ *
+ * @see totalStrangersRequest — handles TOTAL_STRANGERS requests
+ */
 import * as constants from "../../../constants/constants.js";
 import { parserHelper, validatorHelper } from "../../../helpers/helpers.js";
 import { logger } from "../../../logs/logs.js";

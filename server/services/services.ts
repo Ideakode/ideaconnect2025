@@ -1,3 +1,12 @@
+/**
+ * @file services.ts
+ *
+ * @description
+ * Barrel re-export for all server services, using short aliases:
+ * socketS (socketService), socketSS (socketStrangerService),
+ * socketAS (socketAgentService), storeAS (storeAgentService),
+ * storeSS (storeStrangerService).
+ */
 export { socketService as socketS } from "./socket.service.js";
 export { socketStrangerService as socketSS } from "./socketStranger.service.js";
 export { socketAgentService as socketAS } from "./socketAgent.service.js";

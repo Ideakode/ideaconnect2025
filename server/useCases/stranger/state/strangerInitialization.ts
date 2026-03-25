@@ -1,3 +1,19 @@
+/**
+ * @file strangerInitialization.ts
+ * @class strangerInitialization
+ *
+ * @description
+ * Server-side initialisation use case for the stranger namespace. Called once
+ * during server bootstrap (from server/index.ts). Validates commonParams and
+ * delegates to socketStrangerService.initStranger to register the connect listener
+ * on the /STRANGER namespace, making the server ready to accept stranger connections.
+ *
+ * @staticMethods
+ * - execute(cParams)  Validates commonParams and calls socketSS.initStranger.
+ *
+ * @see socketStrangerService   — called by execute to initialise the namespace
+ * @see socketEventMapStranger  — the events map passed to initStranger
+ */
 import { socketSS } from "../../../services/services.js";
 import { ICommonParams } from "../../../interfaces/interfaces.js";
 import { socketEventMapStranger as evsMap } from "../../../eventHandlers/eventHandlers.js";

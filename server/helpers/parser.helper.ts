@@ -1,3 +1,26 @@
+/**
+ * @file parser.helper.ts
+ * @class parserHelper
+ *
+ * @description
+ * Provides parse/cast methods for all server interface types. Each method
+ * validates the input using the interface's own parse function (or
+ * validatorHelper for Socket), throws a typed parser error if invalid,
+ * and returns the strongly-typed result. Used at every use case boundary
+ * to safely coerce unknown socket event data into known interfaces.
+ *
+ * @staticMethods
+ * - parseSocket(data)                      Validates and returns a Socket.IO Socket.
+ * - parseCommonParamsInterface(data)       Returns ICommonParams.commonParams or throws.
+ * - parseCallSignalingInterface(data)      Returns ICallSignaling.callSignaling or throws.
+ * - parseNotificationInterface(data)       Returns INotification.notification or throws.
+ * - parseAllowConnectionsInterface(data)   Returns IAllowConnections.allowConnections or throws.
+ * - parseClientRequestInterface(data)      Returns IClientRequest.clientRequest or throws.
+ * - parseWebRTCSignalingInterface(data)    Returns IWebRtcSignaling.webRtcSignaling or throws.
+ *
+ * @see validatorHelper — used internally by parseSocket
+ * @see errorBuilder    — provides ifDataNotValid error factory
+ */
 import { Socket } from "socket.io";
 import { validatorHelper } from "./helpers.js";
 import {

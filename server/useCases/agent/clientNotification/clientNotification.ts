@@ -1,3 +1,20 @@
+/**
+ * @file clientNotification.ts
+ * @class clientNotification
+ *
+ * @description
+ * Dispatcher use case for client-notification events from agents.
+ * Parses the incoming notification, verifies the agent is in the store,
+ * then routes to the appropriate sub-use-case based on notification type.
+ *
+ * Supported types:
+ * - AGENT_AVAILABLE → availableForConnectionsNotification.execute
+ *
+ * @staticMethods
+ * - execute(cParamsData, socketData, notifData)  Main handler, called by socketEventHandler.
+ *
+ * @see availableForConnectionsNotification — handles AGENT_AVAILABLE notifications
+ */
 import * as constants from "../../../constants/constants.js";
 import { logger } from "../../../logs/logs.js";
 import { parserHelper, validatorHelper } from "../../../helpers/helpers.js";

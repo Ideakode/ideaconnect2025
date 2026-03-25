@@ -1,3 +1,24 @@
+/**
+ * @file socketEventMapAgent.ts
+ * @const socketEventMapAgent
+ *
+ * @description
+ * Defines the complete Socket.IO event-to-use-case mapping for the /AGENT namespace.
+ * Built with IEventsMap.getEventsMap and consumed by socketAgentService.initAgent.
+ *
+ * Event → Use Case mapping:
+ * | Event                | Use Case                  |
+ * |----------------------|---------------------------|
+ * | connect              | agentConnected.execute    |
+ * | disconnect           | agentDisconnected.execute |
+ * | client-notification  | clientNotification.execute|
+ * | client-request       | clientRequest.execute     |
+ * | call-signaling       | callSignaling.execute     |
+ * | webrtc-signaling     | webRtcSignaling.execute   |
+ *
+ * @see socketEventHandler    — consumes this map during init and per-socket binding
+ * @see agentInitialization   — passes this map to socketAgentService.initAgent
+ */
 import { IEventMap, IEventsMap } from "../interfaces/interfaces.js";
 import * as constants from "../constants/constants.js";
 import { agentConnected } from "../useCases/agent/state/agentConnected.js";

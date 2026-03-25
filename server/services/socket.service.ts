@@ -1,3 +1,40 @@
+/**
+ * @file socket.service.ts
+ * @class socketService
+ *
+ * @description
+ * Base socket service providing shared emit helpers used by both the agent
+ * and stranger socket services. All methods are static. Validates inputs
+ * via validatorHelper and parses interfaces via parserHelper before emitting.
+ *
+ * @staticMethods
+ * - notifyPeers(io, peerTypeToNotify, event, data, peerId, broadcast)
+ *     Core emit primitive. Resolves the correct Socket.IO namespace from peerType,
+ *     then either broadcasts to all peers or emits to a specific socket ID.
+ *
+ * - sendCallSignalingMessage(io, toPeerType, sigData)
+ *     Parses the call-signaling interface and emits a CALL_SIGNALING event
+ *     to the destination socket ID specified in sigData.routeTo.id.
+ *
+ * - sendCallSignalingNotFound(cParamsData, socketData, sigData, toPeerType)
+ *     Mutates sigData to set status NOT_FOUND and routeTo.id to the caller's
+ *     socket ID, then sends the signaling message back to the caller.
+ *
+ * - sendServerNotification(io, toPeerType, peerId, broadcast, notifData)
+ *     Wraps a SERVER_NOTIFICATION event emit, targeting a specific peer or
+ *     broadcasting to the entire namespace.
+ *
+ * - sendWebRTCSignalingMessage(io, toPeerType, peerId, broadcast, wSigData)
+ *     Wraps a WEBRTC_SIGNALING event emit.
+ *
+ * - registerSocketEvents(cParams, socket, eventsMap)
+ *     Delegates to socketEventHandler.registerPeerSocketEvents to bind
+ *     all non-connect events on an individual socket.
+ *
+ * @see socketAgentService   — extends this with agent-specific methods
+ * @see socketStrangerService — extends this with stranger-specific methods
+ * @see socketEventHandler   — used by registerSocketEvents
+ */
 import { Server as IOServer, Socket } from "socket.io";
 import * as constants from "../constants/constants.js";
 import {

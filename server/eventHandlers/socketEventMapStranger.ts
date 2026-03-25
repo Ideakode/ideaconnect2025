@@ -1,3 +1,23 @@
+/**
+ * @file socketEventMapStranger.ts
+ * @const socketEventMapStranger
+ *
+ * @description
+ * Defines the complete Socket.IO event-to-use-case mapping for the /STRANGER namespace.
+ * Built with IEventsMap.getEventsMap and consumed by socketStrangerService.initStranger.
+ *
+ * Event → Use Case mapping:
+ * | Event            | Use Case                    |
+ * |------------------|-----------------------------|
+ * | connect          | strangerConnected.execute   |
+ * | disconnect       | strangerDisconnected.execute|
+ * | client-request   | clientRequest.execute       |
+ * | call-signaling   | callSignaling.execute       |
+ * | webrtc-signaling | webRtcSignaling.execute     |
+ *
+ * @see socketEventHandler      — consumes this map during init and per-socket binding
+ * @see strangerInitialization  — passes this map to socketStrangerService.initStranger
+ */
 import { IEventMap, IEventsMap } from "../interfaces/interfaces.js";
 import * as constants from "../constants/constants.js";
 import {

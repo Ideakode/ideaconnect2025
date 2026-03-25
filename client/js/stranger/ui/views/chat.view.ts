@@ -130,9 +130,9 @@ export class chatView {
 
   private static createWrapper(): HTMLDivElement {
     const wrapper = document.createElement("div") as HTMLDivElement;
-    const css1 = viewsReferences.classes.view;
-    const css2 = viewsReferences.classes.view_chat;
-    wrapper.classList.add(css1, css2);
+    const cssView = viewsReferences.classes.view;
+    const cssViewChat = viewsReferences.classes.view_chat;
+    wrapper.classList.add(cssView, cssViewChat);
     wrapper.id = viewsReferences.IDs.view_chat;
     return wrapper;
   }

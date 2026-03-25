@@ -1,3 +1,38 @@
+/**
+ * @file error.handler.ts
+ * @class errorHandler
+ *
+ * @description
+ * Central error handling utility for the server. All methods are static.
+ * Provides creation, wrapping, propagation, and throwing of typed errors.
+ * All service, use case, and event handler code routes through this class.
+ *
+ * @staticMethods
+ * - createError(type, err, msg, method)
+ *     Instantiates the correct typed error class based on the error type string.
+ *     Supports: PARSER, VALIDATOR, SERVICE, BASE, USE_CASE, EVENT_HANDLER.
+ *
+ * - wrapError(by, type, error, method, logIt?)
+ *     Re-wraps an existing baseErrorClass instance into a new typed error.
+ *     Non-baseErrorClass errors pass through unchanged.
+ *
+ * - propagateError(by, type, error, method, logIt?)
+ *     Wraps then throws the error. Used to bubble up typed errors through layers.
+ *
+ * - propagateErrorParser / propagateErrorValidator / propagateErrorService
+ * - propagateErrorBase / propagateErrorUseCase / propagateErrorEventHandler
+ *     Convenience wrappers for propagateError with the correct type preset.
+ *
+ * - throwError(by, error, logIt?)
+ *     Logs the error (via logErrors) and throws it.
+ *
+ * - wrapErrorUseCase(by, error, method, logIt?)
+ *     Wraps as a USE_CASE error without throwing. Used in use case catch blocks
+ *     where the error is logged but execution should continue.
+ *
+ * @see errorBuilder  — provides pre-built error instances
+ * @see logErrors     — handles console output
+ */
 import {
   serviceErrorClass,
   baseErrorClass,

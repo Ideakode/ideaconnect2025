@@ -1,10 +1,20 @@
 /**
- * This class represents an Agent and extends the class of a ConnectedPeer
+ * @file peerAgent.class.ts
+ * @class peerAgentClass  (exported as peerAgent)
  *
- * On top of ConnectedPeer properties, the Agent has specific ones for:
- *  - availablitily in receiving connections from strangers
- *  - availablitily to receiving connections from other Agents
- *  - others (to be added later when built)
+ * @description
+ * Represents a connected agent. Extends peerClass with two availability
+ * flags that control whether the agent accepts incoming connections
+ * from strangers or from other agents. Both flags default to false
+ * and are updated at runtime via client-notification events.
+ *
+ * @properties
+ * - allowConnectionFromStrangers  True when the agent is open to stranger connections.
+ * - allowConnectionFromAgents     True when the agent is open to agent-to-agent connections.
+ *
+ * @see peerClass        — base peer with id, type, name, email, phone
+ * @see storeAgentClass  — stores peerAgent instances
+ * @see availableForConnectionsNotification — use case that updates these flags
  */
 
 import { peer } from "./classes.js";

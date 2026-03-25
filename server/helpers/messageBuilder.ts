@@ -1,3 +1,35 @@
+/**
+ * @file messageBuilder.ts
+ * @class messageBuilder
+ *
+ * @description
+ * Factory class for constructing the structured message objects emitted over
+ * Socket.IO. All methods are static and return fully-formed interface objects
+ * ready to be passed to socketService emit helpers.
+ *
+ * @staticMethods
+ * - buildCallSignaling(cDetails, msgType, routeTo)
+ *     Constructs a callSignaling interface with the given call details, status
+ *     type, and destination socket ID.
+ *
+ * - callSignalingNotFound(cDetails, routeTo)
+ *     Convenience wrapper around buildCallSignaling with status NOT_FOUND.
+ *
+ * - buildWebRTCSignalingAnswer(cDetails, data)
+ *     Builds a WebRTC ANSWER signaling message routed back to the calling party.
+ *
+ * - notification(type, data)
+ *     Constructs a generic server notification with the given type and payload.
+ *
+ * - notificationPeerInfo(data)
+ *     Convenience wrapper for a PEER_INFO server notification.
+ *
+ * - buildWebRtcSignaling(cDetails, mType, routeTo, data, callStatus?)
+ *     Constructs a full webRtcSignaling interface with type, call details,
+ *     route, status, and SDP/ICE data.
+ *
+ * @see socketService — consumes the built messages for emission
+ */
 import {
   callSignaling,
   webRTC,

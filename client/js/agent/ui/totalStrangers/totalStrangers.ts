@@ -13,6 +13,18 @@
  * @see totalStrangerElements            — DOM creation and query layer
  * @see uiAgentService.refreshTotalStrangers — calls updateTotalStrangersBox
  * @see totalStrangers (use case)            — triggers this via uiAgentService
+ * 
+ * 
+ * @html
+ * ```html
+ * <div class="stranger_current_status_container">
+ *   <p class="stranger_container_paragraph">Status</p>
+ *   <p class="stranger_container_paragraph">Clients connected:
+ *     <span id="stranger_total_available"></span>
+ *   </p>
+ * </div>
+ * ```
+ * 
  */
 import { logger } from "../../logs/logs.js";
 import { errorHandler } from "../../errors/errors.js";

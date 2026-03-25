@@ -1,3 +1,34 @@
+/**
+ * @file storeAgent.service.ts
+ * @class storeAgentService  (exported as storeAS)
+ *
+ * @description
+ * Stateless service layer for all agent store operations. All methods are static
+ * and accept the storeA instance as a parameter so the service itself holds no
+ * state. Validates the store before delegating to storeAgentClass methods.
+ *
+ * @staticMethods
+ * - addAgent(agentId, storeA)
+ *     Validates the store and calls storeA.addAgent; returns the new peerAgent.
+ *
+ * - removeAgent(agentId, storeA)
+ *     Validates the store and calls storeA.removeAgent; returns true if removed.
+ *
+ * - setAvailbleStatus(storeA, data)
+ *     Parses the allowConnections interface and calls storeA.setAgentAvailableStatus;
+ *     returns true if the agent was found and updated.
+ *
+ * - getAvailableAgentsForStranger(storeA)
+ *     Returns all agents whose allowConnectionFromStrangers flag is true.
+ *
+ * - getAgentIDs(storeA)
+ *     Returns an array of all connected agent socket IDs.
+ *
+ * - getAgentById(storeA, id)
+ *     Returns the peer with the given socket ID, or undefined.
+ *
+ * @see storeAgentClass — underlying store
+ */
 import { IAllowConnections } from "../interfaces/interfaces.js";
 import * as constants from "../constants/constants.js";
 import { peer, peerAgent, storeA } from "../classes/classes.js";

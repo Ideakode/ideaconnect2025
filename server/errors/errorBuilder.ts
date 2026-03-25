@@ -1,3 +1,33 @@
+/**
+ * @file errorBuilder.ts
+ * @class errorBuilder
+ *
+ * @description
+ * Factory class for building named, typed error instances. Provides static
+ * readonly string constants for each known error name (used as identifiers
+ * in catch blocks, notably in useCaseErrors.replyNotFoundIfNeeded) and
+ * factory methods that create the appropriate typed error class.
+ *
+ * @staticProperties  (error name constants)
+ * - _error_peerA_not_in_store   "Peer Agent does not exist in store"
+ * - _error_peerS_not_in_store   "Peer Stranger does not exist in store"
+ * - _error_if_not_valid         "Interface data is not valid"
+ * - _error_peer_not_valid       "Peer Type is not valid"
+ * - _error_io_not_valid         "IO instance is not valid"
+ * - _error_socket_not_valid     "Socket is not valid"
+ * - _error_store_not_valid / _error_storeA_not_valid / _error_storeS_not_valid
+ * - _error_namespace_not_valid  "Namespace is not valid"
+ * - _error_unkonwn
+ *
+ * @staticMethods  (error factory methods)
+ * - ifDataNotValid, unkonwn, peerNotValid, peerANotInStore, peerSNotInStore
+ * - ioNotvalid, socketNotValid, storeNotValid, storeANotValid, storeSNotValid
+ * - namespaceNotValid
+ *
+ * @see errorHandler      — used by factory methods to construct typed errors
+ * @see validatorHelper   — primary consumer; calls peerANotInStore / peerSNotInStore
+ * @see useCaseErrors     — reads _error_peerA/S_not_in_store constants by name
+ */
 import {
   parserErrorClass,
   validatorErrorClass,

@@ -1,3 +1,19 @@
+/**
+ * @file agentInitialization.ts
+ * @class agentInitialization
+ *
+ * @description
+ * Server-side initialisation use case for the agent namespace. Called once
+ * during server bootstrap (from server/index.ts). Validates commonParams and
+ * delegates to socketAgentService.initAgent to register the connect listener
+ * on the /AGENT namespace, making the server ready to accept agent connections.
+ *
+ * @staticMethods
+ * - execute(cParams)  Validates commonParams and calls socketAS.initAgent.
+ *
+ * @see socketAgentService    — called by execute to initialise the namespace
+ * @see socketEventMapAgent   — the events map passed to initAgent
+ */
 import { socketAS } from "../../../services/services.js";
 import { ICommonParams } from "../../../interfaces/interfaces.js";
 import { socketEventMapAgent as evsMap } from "../../../eventHandlers/eventHandlers.js";

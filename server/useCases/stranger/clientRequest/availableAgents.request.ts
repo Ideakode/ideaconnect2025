@@ -1,3 +1,24 @@
+/**
+ * @file availableAgents.request.ts
+ * @class availableAgentsRequest
+ *
+ * @description
+ * Handles a stranger's request for the current list of available agents.
+ * Called by clientRequest (stranger) when the request type is AVAILABLE_AGENTS.
+ *
+ * Sequence:
+ * 1. Validates commonParams, IO, both stores, and the requesting stranger's presence.
+ * 2. Fetches available agents from storeAgentService.getAvailableAgentsForStranger.
+ * 3. Transforms the result to IPeers via interfaceHelper.
+ * 4. Sends an AVAILABLE_AGENTS SERVER_NOTIFICATION to the requesting stranger only.
+ *
+ * @staticMethods
+ * - execute(cParams, socket)  Main handler, called by clientRequest (stranger).
+ *
+ * @see storeAgentService     — getAvailableAgentsForStranger
+ * @see socketStrangerService — notifyAvailableAgents (unicast)
+ * @see interfaceHelper       — transformToIPeers
+ */
 import * as constants from "../../../constants/constants.js";
 import type { Socket } from "socket.io";
 import { interfaceHelper, validatorHelper } from "../../../helpers/helpers.js";

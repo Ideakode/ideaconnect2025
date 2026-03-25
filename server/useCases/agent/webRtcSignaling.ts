@@ -1,3 +1,27 @@
+/**
+ * @file webRtcSignaling.ts  (agent)
+ * @class webRtcSignaling
+ *
+ * @description
+ * Handles WebRTC signaling events originating from an agent, routing them to
+ * the target stranger. Called by socketEventHandler for the /AGENT namespace.
+ *
+ * Sequence:
+ * 1. Parses commonParams and the WebRTC signaling interface.
+ * 2. Validates IO and the stranger store.
+ * 3. Verifies the target stranger (wSigData.routeTo.id) exists in storeS.
+ * 4. Forwards the WebRTC signaling message to the stranger via socketAS.sendWebRTCSignalingMessage.
+ *
+ * On any error, delegates to useCaseErrors.replyNotFoundIfNeeded which will
+ * send a NOT_FOUND response back to the agent if the error was a missing peer.
+ *
+ * @staticMethods
+ * - execute(cParamsData, socketData, wSigData)  Main handler, called by socketEventHandler.
+ *
+ * @see socketAgentService — sendWebRTCSignalingMessage
+ * @see useCaseErrors      — replyNotFoundIfNeeded
+ * @see validatorHelper    — checkPeerInStore
+ */
 import * as constants from "../../constants/constants.js";
 import { socketAS } from "../../services/services.js";
 import { logger } from "../../logs/logs.js";

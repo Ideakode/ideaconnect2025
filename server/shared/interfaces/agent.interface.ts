@@ -1,3 +1,12 @@
+/**
+ * @file agent.interface.ts  (shared/interfaces)
+ * @namespace IAgent (unused — duplicate of peer.interface.ts)
+ *
+ * @description
+ * Duplicate of peer.interface.ts kept for historical reasons. Defines the
+ * same { peerID, peerName } shape. Not currently referenced by any barrel —
+ * use IPeer from peer.interface.ts instead.
+ */
 export interface peer {
   peerID: string;
   peerName: string;

@@ -35,6 +35,7 @@ export class defaultView {
       const peerType = constants.peerTypes.STRANGER;
       const el = document.getElementById(attachToId);
       validator.checkHTMLElement(el, attachToId);
+      
       const elToAttach = el as HTMLElement;
       const wrapperview = this.createWrapper();
       const dash = ui.dashboard.createDashboard(peerType);

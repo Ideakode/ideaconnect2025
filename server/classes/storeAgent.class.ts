@@ -1,14 +1,27 @@
 /**
- * This Class represents all Agents that are currently connected to the server.
+ * @file storeAgent.class.ts
+ * @class storeAgentClass  (exported as storeA)
  *
- * Its is an array of peerAgents.
- * This class offers methods for the manipulation of Agents, on a plural context:
- *   - share current list of connected Agents
- *   - add/remove an Agent
- *   - share Agents that are available for Strangers connections
- *   - share Agents that are available for other Agents connections (to do)
- *   - (more to add later if needed...)*
+ * @description
+ * In-memory store for all currently connected agents. Extends storeClass
+ * and specialises it for peerAgent objects. Manages agent lifecycle
+ * (add/remove) and availability flags that determine which agents are
+ * visible to strangers or to other agents.
  *
+ * @methods
+ * - addAgent(id, type)                      Creates a peerAgent with a randomly assigned
+ *                                           display name, adds it to the store, and returns it.
+ * - removeAgent(socketId)                   Removes the agent from the store; returns the
+ *                                           removed peerAgent or null.
+ * - getAvailableAgents(type)                Returns all agents whose availability flag
+ *                                           matches the given peer type (STRANGER or AGENT).
+ * - setAgentAvailableStatus(id, allow, peerType)  Updates allowConnectionFromStrangers or
+ *                                                 allowConnectionFromAgents on the agent;
+ *                                                 returns the updated peerAgent or null.
+ *
+ * @see storeClass      — base store implementation
+ * @see peerAgentClass  — the peer type stored here
+ * @see storeAgentService — service layer that operates on this store
  */
 
 import * as constants from "../constants/constants.js";

@@ -1,6 +1,45 @@
 /**
- * This module binds all the needed server socket events to the connected user socket.
+ * @file socket.eventHandler.ts
+ * @class socketEventHandler
  *
+ * @description
+ * Core event binding engine for both the agent and stranger namespaces.
+ * Handles two distinct phases of socket lifecycle:
+ *
+ * 1. Namespace initialisation (init / setReadyForConnections):
+ *    Registers the `connect` listener on the given Socket.IO namespace so the
+ *    server is ready to accept incoming connections.
+ *
+ * 2. Per-socket event binding (registerPeerSocketEvents / bindSocketEvents):
+ *    Called after a peer connects; iterates the eventsMap and binds each
+ *    non-connect event to its corresponding use case execute function via buildCallback.
+ *
+ * @staticMethods
+ * - init(cParams, eventsMap, namespace)
+ *     Public entry point for namespace initialisation. Validates inputs and
+ *     delegates to setReadyForConnections.
+ *
+ * - registerPeerSocketEvents(cParams, socket, eventsMap)
+ *     Public entry point for per-socket binding. Validates inputs and
+ *     delegates to bindSocketEvents.
+ *
+ * - buildCallback(cParams, mySocket, eventMap)  [private]
+ *     Wraps a use case execute function into a Socket.IO-compatible callback.
+ *     CONNECT callbacks receive (cParams, socketData); all others receive
+ *     (cParams, socket, data).
+ *
+ * - setReadyForConnections(namespace, cParams, evs)  [private]
+ *     Resolves the CONNECT entry from the events map, builds its callback,
+ *     and registers it on the namespace.
+ *
+ * - bindSocketEvents(cParams, socket, eventsCallbacks)  [private]
+ *     Iterates every event in the map (CONNECT is re-bound here but effectively
+ *     handled as a no-op since it fires on the namespace, not the socket),
+ *     builds a callback for each, and calls socket.on.
+ *
+ * @see socketAgentService   — calls init via initAgent
+ * @see socketStrangerService — calls init via initStranger
+ * @see socketService        — calls registerPeerSocketEvents via registerSocketEvents
  */
 import type { Socket } from "socket.io";
 import * as constants from "../constants/constants.js";

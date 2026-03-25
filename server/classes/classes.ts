@@ -1,3 +1,10 @@
+/**
+ * @file classes.ts
+ *
+ * @description
+ * Barrel re-export for all server classes, using short aliases:
+ * peer, peerAgent, socketServer, store, storeA (storeAgent), storeS (storeStranger), webServer.
+ */
 export { peerClass as peer } from "./peer.class.js";
 export { peerAgentClass as peerAgent } from "./peerAgent.class.js";
 export { socketServerClass as socketServer } from "./socketServer.class.js";

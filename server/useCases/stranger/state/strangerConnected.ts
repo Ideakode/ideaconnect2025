@@ -1,3 +1,25 @@
+/**
+ * @file strangerConnected.ts
+ * @class strangerConnected
+ *
+ * @description
+ * Handles the stranger connect socket event. Triggered by socketEventHandler
+ * when a new socket connects on the /STRANGER namespace.
+ *
+ * Sequence:
+ * 1. Parses commonParams and the incoming socket.
+ * 2. Adds the stranger to storeS.
+ * 3. Binds all stranger socket events to the connected socket via socketSS.
+ * 4. Broadcasts the updated total stranger count to all agents via socketAS.notifyTotalStrangers.
+ *
+ * @staticMethods
+ * - execute(cParamsData, socketData)  Main handler, called by socketEventHandler.
+ *
+ * @see storeStrangerService  — addStranger, getTotalConnectedStrangers, getStrangerIDs
+ * @see socketStrangerService — registerSocketEvents
+ * @see socketAgentService   — notifyTotalStrangers (broadcast)
+ * @see socketEventMapStranger — events bound to the new socket
+ */
 import * as constants from "../../../constants/constants.js";
 import { storeSS, socketSS, socketAS } from "../../../services/services.js";
 import { logger } from "../../../logs/logs.js";

@@ -10,9 +10,26 @@ import { logger } from "../../../logs/logs.js";
 import { useCaseErrors } from "../../useCaseErrors.js";
 
 /**
- * When the Agent makes himself available or not available to accept connections from Strangers or Agents:
- *  - his data gets updated in the store;
- *  - All Strangers or Agents are notified;
+ * @file availableForConnections.notification.ts
+ * @class availableForConnectionsNotification
+ *
+ * @description
+ * Handles the AGENT_AVAILABLE client-notification. Called by clientNotification
+ * when an agent sends a notification to update their availability status.
+ *
+ * Sequence:
+ * 1. Parses and validates the allowConnections interface from the notification data.
+ * 2. Calls storeAgentService.setAvailbleStatus to update the agent's flag in storeA.
+ * 3. If the update succeeded and peerType is STRANGER, fetches the updated available
+ *    agent list and broadcasts it to all strangers via socketSS.notifyAvailableAgents.
+ * 4. If peerType is AGENT, logs a TODO (agent-to-agent availability not yet implemented).
+ *
+ * @staticMethods
+ * - execute(cParams, data)  Main handler, called by clientNotification.
+ *
+ * @see storeAgentService    — setAvailbleStatus, getAvailableAgents
+ * @see socketStrangerService — notifyAvailableAgents (broadcast)
+ * @see interfaceHelper      — transformToIPeers
  */
 
 export class availableForConnectionsNotification {

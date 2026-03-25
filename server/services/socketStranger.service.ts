@@ -1,3 +1,25 @@
+/**
+ * @file socketStranger.service.ts
+ * @class socketStrangerService  (exported as socketSS)
+ *
+ * @description
+ * Stranger-specific socket service. Extends socketService with two methods
+ * that are only relevant to the stranger namespace (/STRANGER).
+ *
+ * @staticMethods
+ * - initStranger(cParams, evsMap)
+ *     Delegates to socketEventHandler.init to register the connect listener
+ *     on the /STRANGER namespace using the provided events map.
+ *
+ * - notifyAvailableAgents(io, strangerId, agentsIF, broadcast)
+ *     Builds an AVAILABLE_AGENTS SERVER_NOTIFICATION and sends it to a specific
+ *     stranger socket or broadcasts it to all strangers.
+ *
+ * @see socketService          — base class
+ * @see socketEventHandler     — used by initStranger
+ * @see strangerInitialization — calls initStranger
+ * @see availableAgentsRequest — calls notifyAvailableAgents
+ */
 import { Server as IOServer } from "socket.io";
 import { socketEventHandler } from "../eventHandlers/eventHandlers.js";
 import {

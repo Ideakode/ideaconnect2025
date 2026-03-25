@@ -1,3 +1,25 @@
+/**
+ * @file agentConnected.ts
+ * @class agentConnected
+ *
+ * @description
+ * Handles the agent connect socket event. Triggered by socketEventHandler
+ * when a new socket connects on the /AGENT namespace.
+ *
+ * Sequence:
+ * 1. Parses commonParams and the incoming socket.
+ * 2. Adds the agent to storeA (assigns a random display name).
+ * 3. Binds all agent socket events to the connected socket via socketAS.
+ * 4. Sends a PEER_INFO SERVER_NOTIFICATION back to the connecting agent
+ *    so it knows its own assigned name and socket ID.
+ *
+ * @staticMethods
+ * - execute(cParamsData, socketData)  Main handler, called by socketEventHandler.
+ *
+ * @see storeAgentService  — addAgent
+ * @see socketAgentService — registerSocketEvents, sendServerNotification
+ * @see socketEventMapAgent — events bound to the new socket
+ */
 import * as constants from "../../../constants/constants.js";
 import { socketAS, storeAS } from "../../../services/services.js";
 import {

@@ -1,3 +1,27 @@
+/**
+ * @file callSignaling.ts  (agent)
+ * @class callSignaling
+ *
+ * @description
+ * Handles call-signaling events originating from an agent, routing them to
+ * the target stranger. Called by socketEventHandler for the /AGENT namespace.
+ *
+ * Sequence:
+ * 1. Parses commonParams and the call-signaling interface.
+ * 2. Validates IO and both stores.
+ * 3. Verifies the target stranger (sigData.routeTo.id) exists in storeS.
+ * 4. Forwards the signaling message to the stranger via socketAS.sendCallSignalingMessage.
+ *
+ * On any error, delegates to useCaseErrors.replyNotFoundIfNeeded which will
+ * send a NOT_FOUND response back to the agent if the error was a missing peer.
+ *
+ * @staticMethods
+ * - execute(cParamsData, socketData, sigData)  Main handler, called by socketEventHandler.
+ *
+ * @see socketAgentService    — sendCallSignalingMessage
+ * @see useCaseErrors         — replyNotFoundIfNeeded
+ * @see validatorHelper       — checkPeerInStore
+ */
 import { socketAS } from "../../services/services.js";
 import * as constants from "../../constants/constants.js";
 import { logger } from "../../logs/logs.js";

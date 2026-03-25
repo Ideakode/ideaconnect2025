@@ -1,3 +1,19 @@
+/**
+ * @file storeStranger.class.ts
+ * @class storeStrangerClass  (exported as storeS)
+ *
+ * @description
+ * Extends the base store class with a stranger-specific property: availableAgents.
+ * The setter validates the incoming IPeers.peers value through parserSHelper
+ * before storing it, and logs the resulting agent count.
+ *
+ * @extends store
+ *
+ * @properties
+ * - availableAgents  IPeers.peers  — list of agents currently available to the stranger.
+ *
+ * @see storeS  (alias exported from classes/classes.ts)
+ */
 import { Socket } from "socket.io-client";
 import { store } from "../../base/classes/classes.js";
 import * as constants from "../constants/constants.js";

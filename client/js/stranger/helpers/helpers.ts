@@ -1,3 +1,12 @@
+/**
+ * @file helpers.ts
+ *
+ * @description
+ * Barrel that aggregates stranger-specific and base helper exports.
+ * - callHelper, messageBuilder, uiHelper, miscHelper — re-exported from base
+ * - validatorSHelper  — stranger validator (validatorStrangerHelper)
+ * - parserSHelper     — stranger parser (parserStrangerHelper)
+ */
 export {
   callHelper,
   messageBuilder,

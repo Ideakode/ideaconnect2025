@@ -1,3 +1,18 @@
+/**
+ * @file dataChannelMessage.ts
+ * @class dataChannelMessage
+ *
+ * @description
+ * Use case triggered when a message arrives over the WebRTC data channel.
+ * Currently logs the received message. The UI append call is commented
+ * out pending chat UI integration.
+ *
+ * @staticMethods
+ * - execute(cParamsData, attachedCDetailsData, message)
+ *     Logs the incoming message. (ui.appendMessage is TODO)
+ *
+ * @see webRtcEventMapping — registers this as the DATACHANNEL_MESSAGE listener
+ */
 import { logger, logErrors } from "../../logs/logs.js";
 
 export class dataChannelMessage {

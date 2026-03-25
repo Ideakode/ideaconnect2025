@@ -1,3 +1,22 @@
+/**
+ * @file socketStranger.service.ts
+ * @class socketStrangerService  (exported as socketSSvc)
+ *
+ * @description
+ * Extends the base socketSvc with a stranger-specific socket operation.
+ * Provides the requestAvailableAgents method which emits a CLIENT_REQUEST
+ * message of type AVAILABLE_AGENTS to the server, triggering the server to
+ * broadcast the current agent list back to this stranger.
+ *
+ * @staticMethods
+ * - requestAvailableAgents(socket)
+ *     Validates the socket, builds a clientRequest message with type
+ *     AVAILABLE_AGENTS and sends it via sendClientRequest.
+ *     Called by strangerConnected upon socket connection.
+ *
+ * @see strangerConnected  — caller on socket connect event
+ * @see messageBuilder.buildClientRequest
+ */
 import { Socket } from "socket.io-client";
 import { socketSvc } from "../../base/services/services.js";
 import { errorHandler } from "../errors/errors.js";

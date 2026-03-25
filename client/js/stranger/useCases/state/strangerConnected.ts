@@ -1,3 +1,21 @@
+/**
+ * @file strangerConnected.ts
+ * @class strangerConnected
+ *
+ * @description
+ * Use case triggered on the socket CONNECT event.
+ * After the stranger's socket successfully connects to the server,
+ * this use case requests an up-to-date list of available agents.
+ *
+ * @staticMethods
+ * - execute(cParamsData)
+ *     Parses cParamsData → commonParams, extracts the store and socket,
+ *     then calls socketSSvc.requestAvailableAgents(socket) so the server
+ *     responds with the current agent list.
+ *
+ * @see socketStrangerService.requestAvailableAgents
+ * @see serverNotification / availableAgents — response path
+ */
 import { storeSSvc, socketSSvc } from "../../services/services.js";
 import { useCaseErrors } from "../usesCases.js";
 import { logger } from "../../logs/logs.js";

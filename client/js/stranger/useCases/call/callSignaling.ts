@@ -1,3 +1,27 @@
+/**
+ * @file callSignaling.ts
+ * @class callSignaling
+ *
+ * @description
+ * Dispatcher use case for incoming CALL_SIGNALING socket events.
+ * Parses the call-signaling envelope, validates the call state, then
+ * routes to the appropriate child use case based on callStatus.status.
+ *
+ * Dispatched statuses:
+ * - CALL_ACCEPTED → callAccepted.execute
+ * - CALL_REJECTED → callRejected.execute
+ * - CANCEL        → callCancelled.execute
+ * - NOT_FOUND     → callNotFound.execute
+ * - CALL_BUSY     → callBusy.execute
+ * - BYE           → (reserved, not yet implemented)
+ *
+ * @staticMethods
+ * - execute(cParamsData, cSigData)
+ *     Parses both arguments, checks call and signaling state validity,
+ *     then dispatches on cSig.callStatus.status.
+ *
+ * @see socketEventMapping  — registers this as the CALL_SIGNALING listener
+ */
 import * as constants from "../../constants/constants.js";
 import { useCaseErrors } from "../usesCases.js";
 import { logger } from "../../logs/logs.js";

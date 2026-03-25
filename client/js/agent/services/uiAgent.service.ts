@@ -50,7 +50,10 @@ export default class uiAgentService {
     try {
       const peerS = constants.peerTypes.STRANGER;
       const peerA = constants.peerTypes.AGENT;
-      ui.rootAgent.initializeRootElements();
+      const rootContainerId = ui.rootAgent.getIDs().root_container;
+      ui.rootAgent.initializeRootElements();      
+      ui.views.defaultView.create(rootContainerId);
+      
       const forPeers = [peerS, peerA];
       ui.allowConnections.registerAllowConnectionsEvents(cParams, forPeers);
     } catch (error: unknown) {

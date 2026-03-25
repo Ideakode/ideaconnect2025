@@ -1,3 +1,22 @@
+/**
+ * @file callHangedUp.ts
+ * @class callHangedUp
+ *
+ * @description
+ * Use case invoked when the stranger dismisses the outgoing call dialog
+ * before the agent responds. Closes the call dialog, resets the store,
+ * and sends a CANCEL call-signaling message to the server.
+ *
+ * @staticMethods
+ * - execute(cParamsData, data)
+ *     1. Validates call details and store state
+ *     2. uiSSvc.closeCallDialog
+ *     3. storeSSvc.resetCall
+ *     4. Builds a CANCEL message and sends via socketSSvc.sendCallSignaling
+ *
+ * @see callRequest  — passes callHangedUp.execute as the hangup callback
+ * @see messageBuilder.buildCallSignalingCancel
+ */
 import { storeSSvc, socketSSvc, uiSSvc } from "../../services/services.js";
 import { useCaseErrors } from "../usesCases.js";
 import { logger } from "../../logs/logs.js";

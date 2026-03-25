@@ -1,3 +1,27 @@
+/**
+ * @file default.view.ts
+ * @class defaultView
+ *
+ * @description
+ * The stranger's idle / default view, shown when no call is active.
+ * Renders a dashboard containing the agent-listing component inside the
+ * root container. Supports show/hide toggling for view-switching.
+ *
+ * @staticMethods
+ * - create(attachToId)
+ *     Creates the view wrapper, a STRANGER dashboard, and the agent-list
+ *     container, then appends them to the element identified by attachToId.
+ *     Called by uiSSvc.initializeUI.
+ *
+ * - show()
+ *     Makes the view wrapper visible. Called by uiSSvc.switchToDefaultView.
+ *
+ * - hide()
+ *     Hides the view wrapper. Called by uiSSvc.switchToChatView.
+ *
+ * @see uiSSvc.initializeUI, uiSSvc.switchToDefaultView, uiSSvc.switchToChatView
+ * @see viewsReferences — IDs and CSS classes
+ */
 import { viewsReferences } from "./views.references.js";
 import * as constants from "../../constants/constants.js";
 import { errorHandler } from "../../errors/errors.js";

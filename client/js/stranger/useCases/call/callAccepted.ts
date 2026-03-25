@@ -10,9 +10,25 @@ import { sendChatMessage } from "../webRtc/webRtc.js";
 import { callEnded } from "../call/call.js";
 
 /**
- * The ongoing call setup was accepted by the remote peer
- * It parses and validates the arguments, checks if call is still valid.
- * If call valid, it initializes the webrtc resources needed depending of the calltype.
+ * @file callAccepted.ts
+ * @class callAccepted
+ *
+ * @description
+ * Use case triggered when the remote agent accepts the stranger's call invitation.
+ * Creates the RTCPeerConnection, initialises WebRTC services with the stranger's
+ * event map, advances the store to RTC-in-progress state, starts the WebRTC offer,
+ * and switches the UI to the appropriate view for the call type.
+ *
+ * @staticMethods
+ * - execute(cParamsData, data)
+ *     1. Validates cParams and call details
+ *     2. Creates a peer connection via webRtcSSvc.createPeerConnection
+ *     3. Stores it and calls webRtcSSvc.init + startWebRtcOffer
+ *     4. For CHAT: switches to chat view wiring sendChatMessage and callEnded
+ *        AUDIO / VIDEO: reserved (To Do)
+ *
+ * @see webRTCStrangerService.init
+ * @see callSignaling  — dispatcher that triggers this
  */
 export class callAccepted {
   public static execute(

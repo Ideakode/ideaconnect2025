@@ -1,3 +1,22 @@
+/**
+ * @file callEnded.ts
+ * @class callEnded
+ *
+ * @description
+ * Use case invoked when the stranger ends an active call from the chat view.
+ * Switches the UI back to the default view, resets the call in the store,
+ * and sends a BYE call-signaling message to the server.
+ *
+ * @staticMethods
+ * - execute(cParamsData, data)
+ *     1. Validates cParams and call details
+ *     2. uiSSvc.switchToDefaultView
+ *     3. storeSSvc.resetCall
+ *     4. Builds a BYE message and sends via socketSSvc.sendCallSignaling
+ *
+ * @see chatView  — end-call button wires callEnded.execute
+ * @see messageBuilder.buildCallSignalingBye
+ */
 import { useCaseErrors } from "../usesCases.js";
 import { logger } from "../../logs/logs.js";
 import {

@@ -1,3 +1,22 @@
+/**
+ * @file socketEventMapping.ts
+ *
+ * @description
+ * Defines the stranger's socket event map: binds socket.io event names
+ * to their corresponding use case execute functions.
+ *
+ * Mapped events:
+ * - CONNECT             → strangerConnected.execute
+ * - SERVER_NOTIFICATION → serverNotification.execute
+ * - CALL_SIGNALING      → callSignaling.execute
+ * - WEBRTC_SIGNALING    → webRtcSignaling.execute
+ *
+ * The map is passed to socketSSvc.initService during strangerInitialization
+ * so the base socket service can register all listeners automatically.
+ *
+ * @see strangerInitialization
+ * @see IEventsMap.getEventsMap
+ */
 import * as constants from "../constants/constants.js";
 import { strangerConnected } from "../useCases/state/state.js";
 import { serverNotification } from "../useCases/notification/notification.js";

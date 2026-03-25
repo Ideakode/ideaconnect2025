@@ -1,3 +1,23 @@
+/**
+ * @file serverNotification.ts
+ * @class serverNotification
+ *
+ * @description
+ * Dispatcher use case for SERVER_NOTIFICATION socket events.
+ * Parses the notification envelope, reads its type field and routes
+ * to the appropriate child use case.
+ *
+ * Handled notification types:
+ * - AVAILABLE_AGENTS → availableAgents.execute(cParams, agents)
+ *
+ * @staticMethods
+ * - execute(cParamsData, data)
+ *     Parses cParamsData and the notification payload, then dispatches
+ *     on notif.type. Defaults to a no-op log for unrecognised types.
+ *
+ * @see availableAgents
+ * @see constants.notificationTypes.server.AVAILABLE_AGENTS
+ */
 import * as constants from "../../constants/constants.js";
 import { useCaseErrors } from "../usesCases.js";
 import { logger } from "../../logs/logs.js";

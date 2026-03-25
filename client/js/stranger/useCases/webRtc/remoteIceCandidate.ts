@@ -1,3 +1,20 @@
+/**
+ * @file remoteIceCandidate.ts
+ * @class remoteIceCandidate
+ *
+ * @description
+ * Use case triggered when an ICE_CANDIDATE signaling message arrives from
+ * the remote peer via the server. Adds the candidate to the local
+ * RTCPeerConnection so NAT traversal can complete.
+ *
+ * @staticMethods
+ * - execute(cParamsData, data)  [async]
+ *     1. Parses cParams and the webRtcSignaling message
+ *     2. Validates the call and peer connection
+ *     3. Calls pc.addIceCandidate(wSig.data as RTCIceCandidate)
+ *
+ * @see webRtcSignaling — dispatcher (ICE_CANDIDATE path)
+ */
 import { useCaseErrors } from "../usesCases.js";
 import { logger } from "../../logs/logs.js";
 import { parserSHelper, validatorSHelper } from "../../helpers/helpers.js";

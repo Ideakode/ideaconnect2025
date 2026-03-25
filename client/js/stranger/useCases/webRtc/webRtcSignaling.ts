@@ -1,3 +1,23 @@
+/**
+ * @file webRtcSignaling.ts
+ * @class webRtcSignaling
+ *
+ * @description
+ * Dispatcher use case for incoming WEBRTC_SIGNALING socket events.
+ * Parses the signaling envelope and routes to the appropriate child
+ * use case based on the wSig.type field.
+ *
+ * Dispatched types:
+ * - ICE_CANDIDATE → remoteIceCandidate.execute
+ * - ANSWER        → webRtcAnswer.execute
+ * - OFFER         → (reserved, not yet implemented)
+ *
+ * @staticMethods
+ * - execute(cParamsData, data)
+ *     Parses cParams and the webRTC signaling message, then dispatches on type.
+ *
+ * @see socketEventMapping  — registers this as the WEBRTC_SIGNALING listener
+ */
 import * as constants from "../../constants/constants.js";
 import { logger } from "../../logs/logs.js";
 import { parserSHelper } from "../../helpers/helpers.js";

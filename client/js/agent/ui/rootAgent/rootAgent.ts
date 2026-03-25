@@ -53,6 +53,6 @@ export class rootAgent {
     return rootAgentReferences.classes;
   }
   public static getIDs() {
-    return rootAgentReferences.classes;
+    return rootAgentReferences.IDs;
   }
 }

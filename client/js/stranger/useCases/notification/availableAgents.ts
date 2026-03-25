@@ -1,3 +1,23 @@
+/**
+ * @file availableAgents.ts
+ * @class availableAgents
+ *
+ * @description
+ * Use case invoked when the server delivers a fresh list of available agents
+ * via a SERVER_NOTIFICATION(AVAILABLE_AGENTS) event.
+ * Updates both the store and the UI so the stranger always sees
+ * a current, clickable roster of agents.
+ *
+ * @staticMethods
+ * - execute(cParams, data)
+ *     1. Parses and validates cParams and the IPeers.peers data
+ *     2. Calls storeSSvc.refreshAvailableAgents to persist the list
+ *     3. Calls uiSSvc.refreshAvailableAgents to re-render the agent listing
+ *
+ * @see storeStrangerService.refreshAvailableAgents
+ * @see uiStrangerService.refreshAvailableAgents
+ * @see serverNotification  — caller
+ */
 import { storeSSvc, uiSSvc } from "../../services/services.js";
 import { useCaseErrors } from "../usesCases.js";
 import { logger } from "../../logs/logs.js";

@@ -1,3 +1,34 @@
+/**
+ * @file listingAgents.elements.ts
+ * @class listingAgentsElements
+ *
+ * @description
+ * Manages all DOM creation and mutation for the agent listing component.
+ * Builds the container structure:
+ *   <div class="agents_container" id="agents_container">
+ *     <p class="agents_container_title">Agents available - <span id="agents_count"/></p>
+ *     <div class="agents_list" id="agents_list">
+ *       <!-- one <p> per agent, each with CHAT / VIDEO / AUDIO call buttons -->
+ *     </div>
+ *   </div>
+ *
+ * @staticMethods
+ * - createAgentListingContainer()
+ *     Builds and returns the full container structure described above.
+ *
+ * - setAgentCountSpan(agentCount)
+ *     Updates the #agents_count span text.
+ *
+ * - setAgentList(agents)
+ *     Clears #agents_list and re-renders one entry per agent.
+ *     Each entry has CHAT, VIDEO, and AUDIO call buttons with icon images.
+ *
+ * - getAgentCountSpan() / getAgentsListDiv() / getAgentListContainer()
+ *     Queries and validates DOM elements by ID for live updates.
+ *
+ * @see listingAgentsReferences — ID and CSS class constants
+ * @see listingAgentsTexts      — UI text strings
+ */
 import { listingAgentsReferences } from "./listingAgents.references.js";
 import { listingAgentsTexts } from "./listingAgents.texts.js";
 import * as constants from "../../constants/constants.js";

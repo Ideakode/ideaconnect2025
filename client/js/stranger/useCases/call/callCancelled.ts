@@ -1,3 +1,20 @@
+/**
+ * @file callCancelled.ts
+ * @class callCancelled
+ *
+ * @description
+ * Use case triggered when the remote party signals that the outgoing call
+ * has been cancelled (CANCEL status in call signaling). Validates the call,
+ * then delegates to callFailed with reason CANCEL.
+ *
+ * @staticMethods
+ * - execute(cParams, data)
+ *     Parses call details, validates store and call, then calls
+ *     callFailed.execute(cParams, cDetails, CANCEL).
+ *
+ * @see callFailed
+ * @see callSignaling — dispatcher
+ */
 import * as constants from "../../constants/constants.js";
 import { useCaseErrors } from "../usesCases.js";
 import { logger } from "../../logs/logs.js";

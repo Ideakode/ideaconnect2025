@@ -1,3 +1,51 @@
+/**
+ * @file uiStranger.service.ts
+ * @class uiStrangerService  (exported as uiSSvc)
+ *
+ * @description
+ * Orchestrates all UI operations for the stranger. Acts as the single
+ * point of contact between use cases and the stranger's UI components,
+ * preventing use cases from importing UI modules directly.
+ *
+ * @staticMethods
+ * - initializeUI()
+ *     Bootstrap: creates the root container, then creates the default view
+ *     (agent listing) inside it. Called once by strangerInitialization.
+ *
+ * - refreshAvailableAgents(cParams)
+ *     Delegates to listingAgents.refreshAgents to re-render the agent list
+ *     from the latest store data. Called by the availableAgents use case.
+ *
+ * - openCallDialog(cParams, cDetails, nameA, fnHangup)
+ *     Opens the outgoing call dialog attached to the root container, passing
+ *     callHangedUp.execute as the hangup callback.
+ *
+ * - closeCallDialog()
+ *     Closes the call dialog if one is currently open.
+ *
+ * - openInfoDialog(infoType, clback, delay?, store?)
+ *     Opens an auto-closing info dialog for call status messages
+ *     (REJECTED, CANCELLED, NOT_FOUND, BUSY). Calls clback when it closes.
+ *
+ * - closeInfoDialog()
+ *     Closes the info dialog if one is open.
+ *
+ * - getChatMessageText()
+ *     Returns the current text in the messenger input. Called by sendChatMessage.
+ *
+ * - switchToDefaultView()
+ *     Destroys the chat view and shows the default (agent listing) view.
+ *     Called by callEnded.
+ *
+ * - switchToChatView(cParams, cDetailsToAttach, fnSendMsg, fnEndCall)
+ *     Hides the default view, destroys any existing chat view, and creates
+ *     a new chat view with the messenger and end-call button. Called by callAccepted.
+ *
+ * - refreshChatView(cParams)
+ *     Refreshes the messenger state (e.g. call state label). Called by dataChannelOpen.
+ *
+ * @see ui.*  — all stranger and base UI component modules
+ */
 import { errorHandler } from "../errors/errors.js";
 import { validatorSHelper } from "../helpers/helpers.js";
 import { storeS } from "../classes/classes.js";

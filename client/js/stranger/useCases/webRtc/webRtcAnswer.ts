@@ -1,3 +1,21 @@
+/**
+ * @file webRtcAnswer.ts
+ * @class webRtcAnswer
+ *
+ * @description
+ * Use case triggered when the remote peer sends back the WebRTC SDP answer
+ * (ANSWER type in the webRTC signaling envelope).
+ * Sets the answer as the remote description on the stored RTCPeerConnection.
+ *
+ * @staticMethods
+ * - execute(cParamsData, data)  [async]
+ *     1. Parses cParams and the webRtcSignaling data
+ *     2. Validates the active call and peer connection
+ *     3. Calls pc.setRemoteDescription(wSig.data as RTCSessionDescriptionInit)
+ *
+ * @see webRtcSignaling  — dispatcher
+ * @see webRtcEventMapping  — also has ANSWER mapped here directly
+ */
 import { useCaseErrors } from "../usesCases.js";
 import { logger } from "../../logs/logs.js";
 import { parserSHelper, validatorSHelper } from "../../helpers/helpers.js";

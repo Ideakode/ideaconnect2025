@@ -1,3 +1,35 @@
+/**
+ * @file chat.view.ts
+ * @class chatView
+ *
+ * @description
+ * The stranger's active-call view, created when a CHAT call is accepted.
+ * Renders a messenger component and an end-call button inside a new
+ * wrapper div. The view is fully destroyed (not just hidden) when
+ * the call ends, and recreated fresh for the next call.
+ *
+ * @staticMethods
+ * - create(cParams, cDetails, attachToId, fnSendMsg, fnEndCall)
+ *     Builds the messenger and end-call button, wraps them, and appends
+ *     to attachToId. Called by uiSSvc.switchToChatView.
+ *
+ * - show() / hide()
+ *     Toggles visibility of the wrapper element by ID.
+ *
+ * - destroy()
+ *     Removes the wrapper element from the DOM. Throws if element not found.
+ *
+ * - destroyIfExists()
+ *     Removes the wrapper element if it exists; no-op otherwise.
+ *     Called by uiSSvc.switchToChatView before re-creating the view.
+ *
+ * - refresh(cParams)
+ *     Updates the messenger state display (e.g. call state label).
+ *     Called by uiSSvc.refreshChatView after data channel opens.
+ *
+ * @see uiSSvc.switchToChatView, uiSSvc.switchToDefaultView
+ * @see viewsReferences — IDs and CSS classes
+ */
 import { errorHandler } from "../../errors/errors.js";
 import { validatorSHelper, uiHelper } from "../../helpers/helpers.js";
 import * as ui from "../ui.js";

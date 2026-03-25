@@ -47,7 +47,7 @@ export class defaultView {
       const totalStrangersC = totalStrangers.createStrangerStatus();
       dashC.appendChild(allowConn);
       dashC.appendChild(totalStrangersC);
-      elToAttach.appendChild(dashC);
+      elToAttach.appendChild(dashC);       
       
     } catch (error) {
       const method = this.create.name;

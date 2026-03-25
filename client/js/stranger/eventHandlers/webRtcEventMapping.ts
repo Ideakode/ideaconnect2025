@@ -1,3 +1,22 @@
+/**
+ * @file webRtcEventMapping.ts
+ *
+ * @description
+ * Defines the stranger's WebRTC event map: binds WebRTC peer connection
+ * event names to their corresponding use case execute functions.
+ *
+ * Mapped events:
+ * - ANSWER              → webRtcAnswer.execute
+ * - ICE_CANDIDATE       → localIceCandidate.execute
+ * - DATACHANNEL_OPEN    → dataChannelOpen.execute
+ * - DATACHANNEL_MESSAGE → dataChannelMessage.execute
+ *
+ * Passed to webRTCStrangerService.init via callAccepted so that base
+ * WebRTC services can attach the correct listeners.
+ *
+ * @see webRTCStrangerService.init
+ * @see IEventsMap.getEventsMap
+ */
 import * as constants from "../constants/constants.js";
 import { IEventMap, IEventsMap } from "../interfaces/interfaces.js";
 import {

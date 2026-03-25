@@ -1,3 +1,19 @@
+/**
+ * @file webRtcOffer.ts
+ * @class webRtcOffer
+ *
+ * @description
+ * Placeholder use case for processing an incoming WebRTC SDP offer.
+ * The dispatch on callType (CHAT / AUDIO / VIDEO) is stubbed out
+ * and not yet implemented.
+ *
+ * @staticMethods
+ * - execute(store, callSignalingInterface)
+ *     Parses and validates the store and call details.
+ *     Switches on store.currentCallDetails.callType — all branches are To Do.
+ *
+ * @see webRtcSignaling  — will dispatch here for OFFER type when implemented
+ */
 import * as constants from "../../constants/constants.js";
 import { useCaseErrors } from "../usesCases.js";
 import { logger } from "../../logs/logs.js";

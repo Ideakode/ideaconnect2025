@@ -1,3 +1,26 @@
+/**
+ * @file callRequest.ts
+ * @class callRequest
+ *
+ * @description
+ * Use case triggered when the stranger clicks a call button in the agent listing.
+ * Validates that the stranger is eligible to make a call (IDLE state), builds the
+ * INVITE call-signaling message, marks the store as call-in-progress, opens the
+ * outgoing call dialog, and sends the invitation to the server.
+ *
+ * @staticMethods
+ * - execute(cParams, type, toId, toName)
+ *     @param type    Call type (CHAT / AUDIO / VIDEO)
+ *     @param toId    Socket ID of the target agent
+ *     @param toName  Display name of the target agent
+ *     1. Checks canPeerParticipateInCall (IDLE guard)
+ *     2. Builds an INVITE callSignaling message
+ *     3. storeSSvc.setCallInProgress + uiSSvc.openCallDialog
+ *     4. socketSSvc.sendCallSignaling
+ *
+ * @see callHangedUp   — hang-up callback passed to the call dialog
+ * @see listingAgentsEventHandler — click handler that calls this
+ */
 import { useCaseErrors } from "../usesCases.js";
 import { logger } from "../../logs/logs.js";
 import {

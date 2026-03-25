@@ -1,3 +1,20 @@
+/**
+ * @file callRejected.ts
+ * @class callRejected
+ *
+ * @description
+ * Use case triggered when the remote agent explicitly rejects the stranger's
+ * call invitation. Validates the call is still active, then delegates to
+ * callFailed with reason CALL_REJECTED.
+ *
+ * @staticMethods
+ * - execute(cParams, data)
+ *     Parses call details, validates store and call, then calls
+ *     callFailed.execute(cParams, callDetails, CALL_REJECTED).
+ *
+ * @see callFailed  — shared teardown for non-accepted call outcomes
+ * @see callSignaling  — dispatcher
+ */
 import * as constants from "../../constants/constants.js";
 import { useCaseErrors } from "../usesCases.js";
 import { logger } from "../../logs/logs.js";

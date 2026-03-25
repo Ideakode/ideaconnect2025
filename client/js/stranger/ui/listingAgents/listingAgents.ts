@@ -1,3 +1,28 @@
+/**
+ * @file listingAgents.ts
+ * @class listingAgents
+ *
+ * @description
+ * High-level coordinator for the agent listing UI component.
+ * Delegates DOM operations to listingAgentsElements and event binding
+ * to listingAgentsEventHandler.
+ *
+ * @staticMethods
+ * - refreshAgents(cParams)
+ *     Reads the availableAgents list from the store, updates the agent count
+ *     span and the agent list div, then re-registers click events on all
+ *     call buttons. Called by uiSSvc.refreshAvailableAgents.
+ *
+ * - createAgentListContainer()
+ *     Delegates to listingAgentsElements.createAgentListingContainer to build
+ *     the full container HTML structure. Called by defaultView.create.
+ *
+ * - closeAgentListing() / showAgentListing()
+ *     Hide or show the agents_container element.
+ *
+ * @see listingAgentsElements   — DOM creation and query
+ * @see listingAgentsEventHandler — click event registration
+ */
 import listingAgentsElements from "./listingAgents.elements.js";
 import listingAgentsEventHandler from "./listingAgents.eventHandler.js";
 import { ICommonParams } from "../../interfaces/interfaces.js";

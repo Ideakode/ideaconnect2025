@@ -1,3 +1,21 @@
+/**
+ * @file localIceCandidate.ts
+ * @class localIceCandidate
+ *
+ * @description
+ * Use case triggered by the WebRTC ICE_CANDIDATE event on the peer connection.
+ * Forwards the local ICE candidate to the remote peer through the signaling
+ * server via socket so NAT traversal can be completed.
+ *
+ * @staticMethods
+ * - execute(cParamsData, cDetailsData, iceData)
+ *     1. Parses cParams and call details, validates call state
+ *     2. If iceData is not null, builds an ICE_CANDIDATE webRTC signaling message
+ *        and sends it via socketSSvc.sendWebRTCSignaling
+ *
+ * @see webRtcEventMapping  — registers this as the ICE_CANDIDATE listener
+ * @see messageBuilder.buildWebRTCSignalingIceCandidate
+ */
 import { storeSSvc, socketSSvc } from "../../services/services.js";
 import { useCaseErrors } from "../usesCases.js";
 import { logger } from "../../logs/logs.js";

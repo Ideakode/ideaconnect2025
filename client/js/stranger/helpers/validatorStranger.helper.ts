@@ -1,3 +1,19 @@
+/**
+ * @file validatorStranger.helper.ts
+ * @class validatorStrangerHelper  (exported as validatorSHelper)
+ *
+ * @description
+ * Extends the base validatorHelper with a stranger-specific check.
+ * Adds checkStoreStranger which verifies that an unknown value is a valid
+ * storeStrangerClass instance (has the availableAgents property in addition
+ * to all base store properties).
+ *
+ * @staticMethods
+ * - checkStoreStranger(data)
+ *     Throws if data is not a storeS instance. Uses errorBuilder.storeSNotValid.
+ *
+ * @see storeStrangerClass
+ */
 import { validatorHelper } from "../../base/helpers/helpers.js";
 import { errorHandler, errorBuilder } from "../errors/errors.js";
 import { storeS } from "../classes/classes.js";
